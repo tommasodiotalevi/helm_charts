@@ -23,10 +23,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - "dashboard.{{ .Values.hub.host }}.xip.io"
+    - "jhub.{{ .Values.hub.host }}.myip.cloud.infn.it"
     secretName: dash-selfsigned
   rules:
-  - host: "dashboard.{{ .Values.hub.host }}.xip.io"
+  - host: "jhub.{{ .Values.hub.host }}.myip.cloud.infn.it"
     http:
       paths:
       - path: /
