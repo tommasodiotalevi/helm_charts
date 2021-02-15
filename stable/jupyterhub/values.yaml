@@ -7,7 +7,6 @@ iam:
 
 hub:
     host: localhost
-    port: 30888
     image: dodasts/jupyter-hub:v3.0.1
 
 s3:

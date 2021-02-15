@@ -8,7 +8,28 @@ spec:
   ports:
     - port: 8888
       targetPort: 8888
-      nodePort: {{ .Values.hub.port }}
   selector:
     app: "hub"
-  type: NodePort
+  type: ClusterIP
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hub-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "selfsigned-issuer"
+
+spec:
+  tls:
+  - hosts:
+    - "dashboard.{{ .Values.hub.host }}.xip.io"
+    secretName: dash-selfsigned
+  rules:
+  - host: "dashboard.{{ .Values.hub.host }}.xip.io"
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: hub-webui
+          servicePort: 8888
