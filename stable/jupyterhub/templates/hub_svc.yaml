@@ -31,5 +31,7 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: hub-webui
-          servicePort: 8888
+          service: 
+            name: hub-webui
+            port:
+              number: 8888
