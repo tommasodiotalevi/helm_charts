@@ -15,9 +15,22 @@
                         }
                     }
                 },
+                "proxy": {
+                    "type": "object",
+                    "properties": {
+                        "secretToken": {
+                            "form": true,
+                            "type": "string"
+                        }
+                    }
+                },
                 "hub": {
                     "type": "object",
                     "properties": {
+                        "cookieSecret": {
+                            "type": "string",
+                            "form": true
+                        },
                         "extraEnv": {
                             "type": "object",
                             "properties": {
