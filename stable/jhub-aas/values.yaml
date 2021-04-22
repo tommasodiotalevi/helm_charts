@@ -1,3 +1,4 @@
+hostname: jhub.<PUT PUBLIC HOST>
 jupyterhub:
   ingress:
     enabled: true
@@ -6,10 +7,10 @@ jupyterhub:
       # comment this to use your own certs
       #cert-manager.io/issuer: "selfsigned-issuer"
     hosts:
-      - jhub.<PUT PUBLIC HOST>
+      - {{ .Values.hostname }}
     tls:
       - hosts:
-        - jhub.<PUT PUBLIC HOST>
+        - {{ .Values.hostname }}
         secretName: jhub-tls
         # use this if you put your certs on ./certs dir
         #secretName: tls-secrets

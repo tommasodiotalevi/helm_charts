@@ -15,6 +15,14 @@
                         }
                     }
                 },
+                "hostname": {
+                            "type": "string",
+                            "hidden": {
+                                "value": false,
+                                "path": "jupyterhub/ingress/enabled"
+                            },
+                            "title": "Hostname"
+                },
                 "ingress": {
                     "type": "object",
                     "properties": {
@@ -23,38 +31,6 @@
                             "form": true,
                             "title": "Use a custom hostname",
                             "description": "Enable the ingress resource that allows you to access the JHUB installation."
-                        },
-                        "hosts": {
-                            "type": "array",
-                            "hidden": {
-                                "value": false,
-                                "path": "jupyterhub/ingress/enabled"
-                            },
-                            "title": "Hostname",
-                            "items": {
-                                "type": "string",
-                                "form": true
-                            }
-                        },
-                        "tls": {
-                            "type": "array",
-                            "hidden": {
-                                "value": false,
-                                "path": "jupyterhub/ingress/enabled"
-                            },
-                            "title": "TLS hostnames",
-                            "items": {
-                                "type": "object",
-                                "properties": {
-                                    "hosts": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string",
-                                            "form": true
-                                        }
-                                    }
-                                }
-                            }
                         }
                     }
                 },
