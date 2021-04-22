@@ -2,18 +2,18 @@ hostname: jhub.<PUT PUBLIC HOST>
 jupyterhub:
   ingress:
     enabled: true
-    annotations:
-      kubernetes.io/ingress.class: "nginx"
-      # comment this to use your own certs
-      #cert-manager.io/issuer: "selfsigned-issuer"
-    hosts:
-      - {{ .Values.hostname }}
-    tls:
-      - hosts:
-        - {{ .Values.hostname }}
-        secretName: jhub-tls
-        # use this if you put your certs on ./certs dir
-        #secretName: tls-secrets
+    # annotations:
+    #   kubernetes.io/ingress.class: "nginx"
+    #   # comment this to use your own certs
+    #   #cert-manager.io/issuer: "selfsigned-issuer"
+    # hosts:
+    #   - {{ .Values.hostname }}
+    # tls:
+    #   - hosts:
+    #     - {{ .Values.hostname }}
+    #     secretName: jhub-tls
+    #     # use this if you put your certs on ./certs dir
+    #     #secretName: tls-secrets
 
   scheduling:
     userScheduler:

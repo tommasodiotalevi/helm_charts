@@ -15,14 +15,6 @@
                         }
                     }
                 },
-                "hostname": {
-                            "type": "string",
-                            "hidden": {
-                                "value": false,
-                                "path": "jupyterhub/ingress/enabled"
-                            },
-                            "title": "Hostname"
-                },
                 "ingress": {
                     "type": "object",
                     "properties": {
@@ -33,6 +25,15 @@
                             "description": "Enable the ingress resource that allows you to access the JHUB installation."
                         }
                     }
+                },
+                "hostname": {
+                            "type": "string",
+                            "form": true,
+                            "hidden": {
+                                "value": false,
+                                "path": "jupyterhub/ingress/enabled"
+                            },
+                            "title": "Hostname"
                 },
                 "spark": {
                     "type": "object",
