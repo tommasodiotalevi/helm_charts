@@ -24,7 +24,7 @@ spec:
                 - schedd
                 - wn
             topologyKey: kubernetes.io/hostname
-        {{- if or .Values.cvmfs.enabled .Values.nfs.enabled }}
+        {{- if .Values.cvmfs.enabled }}
         podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
