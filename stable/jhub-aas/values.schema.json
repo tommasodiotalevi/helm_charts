@@ -14,28 +14,30 @@
                             "title": "Enable removal of idle notebooks"
                         }
                     }
-                },
-                "ingress": {
-                    "type": "object",
-                    "properties": {
-                        "enabled": {
-                            "type": "boolean",
-                            "form": true,
-                            "title": "Use a custom hostname",
-                            "description": "Enable the ingress resource that allows you to access the JHUB installation."
-                        }
-                    }
-                },
-                "hostname": {
-                            "type": "string",
-                            "form": true,
-                            "hidden": {
-                                "value": false,
-                                "path": "jupyterhub/ingress/enabled"
-                            },
-                            "title": "Hostname"
-                },
-                "spark": {
+                }
+            }
+        },
+        "ingress": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "form": true,
+                    "title": "Use a custom hostname",
+                    "description": "Enable the ingress resource that allows you to access the JHUB installation."
+                }
+            }
+        },
+        "hostname": {
+                    "type": "string",
+                    "form": true,
+                    "hidden": {
+                        "value": false,
+                        "path": "jupyterhub/ingress/enabled"
+                    },
+                    "title": "Hostname"
+        },
+        "spark": {
                     "type": "object",
                     "title": "Enable spark submission",
                     "properties": {
@@ -44,8 +46,6 @@
                             "form": true
                         }
                     }
-                }
-            }
         }
     }
 }
