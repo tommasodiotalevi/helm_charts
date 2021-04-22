@@ -1,0 +1,12 @@
+# longhorn spool
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: spool
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: {{ .Values.schedd.persistence.spooldir.storageClass }} 
+  resources:
+    requests:
+      storage: {{ .Values.schedd.persistence.spooldir.size }} 

@@ -1,0 +1,8 @@
+# condir mapfile
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mapfile
+data:
+  condormapfile: |
+{{ .Values.schedd.mapfile | indent 4 }}

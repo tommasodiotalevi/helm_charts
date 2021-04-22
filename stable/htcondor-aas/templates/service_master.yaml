@@ -1,0 +1,14 @@
+apiVersion: v1 
+kind: Service 
+metadata:
+  name: master
+spec:
+  type: {{ .Values.master.service.type }}
+  ports:
+    - port: {{ .Values.master.service.targetPort }} 
+      targetPort: {{ .Values.master.service.targetPort }}
+      nodePort: {{ .Values.master.service.nodePort }}
+      protocol: TCP
+      name: collector
+  selector:
+    app.kubernetes.io/name: master

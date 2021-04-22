@@ -1,0 +1,25 @@
+{{- if .Values.autoscaling.enabled }}
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: htcondor-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: wn-pod
+  minReplicas: {{ .Values.autoscaling.minReplicas }}
+  maxReplicas: {{ .Values.autoscaling.maxReplicas }}
+  metrics:
+  - type: Object 
+    object:
+      metric:
+        name: {{ .Values.autoscaling.targetMetric }}
+      describedObject:
+        apiVersion: batch/v1
+        kind: Job
+        name: htcondor-pod
+      target:
+        type: Value
+        value: {{ .Values.autoscaling.targetMetricValue }}
+{{- end }}

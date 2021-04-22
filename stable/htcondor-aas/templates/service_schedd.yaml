@@ -1,0 +1,14 @@
+apiVersion: v1 
+kind: Service 
+metadata:
+  name: schedd
+spec:
+  type: {{ .Values.schedd.service.type }}
+  ports:
+    - port: {{ .Values.schedd.service.targetPort }}
+      targetPort: {{ .Values.schedd.service.targetPort }}
+      nodePort: {{ .Values.schedd.service.nodePort }}
+      protocol: TCP
+      name: schedd
+  selector:
+    app.kubernetes.io/name: schedd

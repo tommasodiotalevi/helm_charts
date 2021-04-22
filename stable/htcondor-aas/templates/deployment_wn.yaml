@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wn-pod
+  labels:
+    app.kubernetes.io/name: wn
+spec:
+
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: wn
+    spec:
+      priorityClassName: system-node-critical
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: NotIn
+                values:
+                - master
+                - schedd
+                - wn
+            topologyKey: kubernetes.io/hostname
+      #hostNetwork: true
+      containers:
+      - name: wn
+        resources:
+          requests:
+            memory: {{ .Values.wn.requests.memory }}
+            cpu: {{ .Values.wn.requests.cpu }}
+        imagePullPolicy: {{ .Values.wn.image.pullPolicy }}
+        image: "{{ .Values.wn.image.name }}:{{ .Values.wn.image.tag | default .Chart.AppVersion }}"
+        volumeMounts:
+          - mountPath: "/etc/condor/config.d"
+            name: configd
+          - name: clustersecret
+            mountPath: /etc/pwd
+          - name: mapfile
+            mountPath: /home/uwdir/
+      volumes:
+      - name: configd
+        configMap:
+          name: wnconfigd
+      - name: clustersecret
+        secret:
+          secretName: clustersecret
+          defaultMode: 256
+      - name: mapfile
+        configMap:
+          name: mapfile
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: wn
+
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.wn.replicas}}
+  {{- end }}

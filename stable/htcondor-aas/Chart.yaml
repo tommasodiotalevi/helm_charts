@@ -1,0 +1,10 @@
+apiVersion: v1
+appVersion: 8.8.9
+description: A Helm chart for the deployment of HTCondor cluster
+name: htcondor
+version: 1.0.1
+maintainers:
+  - name: ttedesch
+    email: tommaso.tedeschi@pg.infn.it
+  - name: dciangot
+    email: diego.ciangottini@pg.infn.it
