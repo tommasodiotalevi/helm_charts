@@ -1,24 +1,71 @@
 {
-  "$schema": "http://json-schema.org/schema#",
-  "type": "object",
-  "properties": {
-    "ingress": {
-      "type": "object",
-      "title": "Username",
-      "form": true,
-      "properties": {
-        "enabled": {
-          "type": "boolean",
-          "title": "Use a nginx Ingress controller",
-          "form": true,
-          "description": "Whether to expose the service via ingress controller"
-        },
-        "hosts": {
-            "type": "array",
-            "title": "Ingress hostname",
-            "form": true
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "jupyterhub": {
+            "type": "object",
+            "properties": {
+                "cull": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean",
+                            "form": true,
+                            "title": "Enable removal of idle notebooks"
+                        }
+                },
+                "ingress": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean",
+                            "form": true,
+                            "title": "Use a custom hostname",
+                            "description": "Enable the ingress resource that allows you to access the JHUB installation."
+                        },
+                        "hosts": {
+                            "type": "array",
+                            "hidden": {
+                                "value": false,
+                                "path": "jupyterhub/ingress/enabled"
+                            },
+                            "form": true,
+                            "title": "Hostname",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "tls": {
+                            "type": "array",
+                            "hidden": {
+                                "value": false,
+                                "path": "jupyterhub/ingress/enabled"
+                            },
+                            "form": true,
+                            "title": "TLS hostnames",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "hosts": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+        "spark": {
+            "type": "object",
+            "title": "Enable spark submission",
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "form": true
+                }
+            }
         }
     }
-  }
- }
 }
