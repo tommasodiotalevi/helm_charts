@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "ingress": {
+      "type": "object",
+      "title": "Username",
+      "form": true,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "title": "Use a nginx Ingress controller",
+          "form": true,
+          "description": "Whether to expose the service via ingress controller"
+        },
+        "hosts": {
+            "type": "array",
+            "title": "Ingress hostname",
+            "form": true
+        }
+    }
+  }
+ }
+}
