@@ -32,6 +32,32 @@
                 }
             }
         },
+        "cvmfs": {
+            "type": "object",
+            "properties": {
+                "defaultLocalConfig": {
+                    "type": "array"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "privKey": {
+                    "type": "array"
+                },
+                "pullPolicy": {
+                    "type": "string"
+                },
+                "repoList": {
+                    "type": "string"
+                },
+                "tag": {
+                    "type": "string"
+                }
+            }
+        },
         "htcClient": {
             "type": "object",
             "properties": {
@@ -61,6 +87,7 @@
                     "type": "string"
                 },
                 "hostname": {
+                    "form": true,
                     "type": "string"
                 },
                 "image": {
@@ -78,6 +105,7 @@
                     }
                 },
                 "publicIP": {
+                    "form": true,
                     "type": "string"
                 },
                 "requests": {
@@ -133,6 +161,7 @@
                     "type": "string"
                 },
                 "hostname": {
+                    "form": true,
                     "type": "string"
                 },
                 "image": {
@@ -195,6 +224,29 @@
                             "type": "string"
                         }
                     }
+                }
+            }
+        },
+        "squid": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "integer"
+                },
+                "pullPolicy": {
+                    "type": "string"
+                },
+                "replicas": {
+                    "type": "integer"
+                },
+                "tag": {
+                    "type": "string"
                 }
             }
         },

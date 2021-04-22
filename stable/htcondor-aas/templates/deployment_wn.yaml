@@ -24,6 +24,19 @@ spec:
                 - schedd
                 - wn
             topologyKey: kubernetes.io/hostname
+        {{- if or .Values.cvmfs.enabled .Values.nfs.enabled }}
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                {{- if .Values.cvmfs.enabled }}
+                - cvmfs
+                {{- end }}
+            topologyKey: kubernetes.io/hostname
+        {{- end }}
       #hostNetwork: true
       containers:
       - name: wn
@@ -40,6 +53,11 @@ spec:
             mountPath: /etc/pwd
           - name: mapfile
             mountPath: /home/uwdir/
+          {{- if .Values.cvmfs.enabled }}
+          - name: cvmfs
+            mountPath: "/cvmfs"
+            #mountPropagation: Bidirectional
+          {{- end }}
       volumes:
       - name: configd
         configMap:
@@ -51,6 +69,12 @@ spec:
       - name: mapfile
         configMap:
           name: mapfile
+      {{- if .Values.cvmfs.enabled }}
+      - name: cvmfs
+        hostPath:
+          path: /cvmfs
+          type: Directory
+      {{- end }}
   selector:
     matchLabels:
       app.kubernetes.io/name: wn
