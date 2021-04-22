@@ -9,227 +9,64 @@
                     "type": "object",
                     "properties": {
                         "enabled": {
-                            "type": "boolean"
-                        },
-                        "every": {
-                            "type": "integer"
-                        },
-                        "timeout": {
-                            "type": "integer"
-                        }
-                    }
-                },
-                "hub": {
-                    "type": "object",
-                    "properties": {
-                        "args": {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        "cookieSecret": {
-                            "type": "string"
-                        },
-                        "db": {
-                            "type": "object",
-                            "properties": {
-                                "pvc": {
-                                    "type": "object",
-                                    "properties": {
-                                        "accessModes": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "string"
-                                            }
-                                        },
-                                        "storage": {
-                                            "type": "string"
-                                        },
-                                        "storageClassName": {
-                                            "type": "string"
-                                        }
-                                    }
-                                },
-                                "type": {
-                                    "type": "string"
-                                },
-                                "upgrade": {
-                                    "type": "null"
-                                }
-                            }
-                        },
-                        "extraConfig": {
-                            "type": "object",
-                            "properties": {
-                                "myConfig.py": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "extraEnv": {
-                            "type": "object",
-                            "properties": {
-                                "ADMIN_OAUTH_GROUPS": {
-                                    "type": "string"
-                                },
-                                "OAUTH_CALLBACK_URL": {
-                                    "type": "string"
-                                },
-                                "OAUTH_ENDPOINT": {
-                                    "type": "string"
-                                },
-                                "OAUTH_GROUPS": {
-                                    "type": "string"
-                                },
-                                "WITH_GPU": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "image": {
-                            "type": "object",
-                            "properties": {
-                                "name": {
-                                    "type": "string"
-                                },
-                                "tag": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "networkPolicy": {
-                            "type": "object",
-                            "properties": {
-                                "enabled": {
-                                    "type": "boolean"
-                                }
-                            }
+                            "type": "boolean",
+                            "form": true,
+                            "title": "Enable removal of idle notebooks"
                         }
                     }
                 },
                 "ingress": {
                     "type": "object",
                     "properties": {
-                        "annotations": {
-                            "type": "object",
-                            "properties": {
-                                "kubernetes.io/ingress.class": {
-                                    "type": "string"
-                                }
-                            }
-                        },
                         "enabled": {
-                            "type": "boolean"
+                            "type": "boolean",
+                            "form": true,
+                            "title": "Use a custom hostname",
+                            "description": "Enable the ingress resource that allows you to access the JHUB installation."
                         },
                         "hosts": {
                             "type": "array",
+                            "hidden": {
+                                "value": false,
+                                "path": "jupyterhub/ingress/enabled"
+                            },
+                            "title": "Hostname",
                             "items": {
-                                "type": "string"
+                                "type": "string",
+                                "form": true
                             }
                         },
                         "tls": {
                             "type": "array",
+                            "hidden": {
+                                "value": false,
+                                "path": "jupyterhub/ingress/enabled"
+                            },
+                            "title": "TLS hostnames",
                             "items": {
                                 "type": "object",
                                 "properties": {
                                     "hosts": {
                                         "type": "array",
                                         "items": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "secretName": {
-                                        "type": "string"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "proxy": {
-                    "type": "object",
-                    "properties": {
-                        "chp": {
-                            "type": "object",
-                            "properties": {
-                                "networkPolicy": {
-                                    "type": "object",
-                                    "properties": {
-                                        "enabled": {
-                                            "type": "boolean"
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "secretToken": {
-                            "type": "string"
-                        }
-                    }
-                },
-                "scheduling": {
-                    "type": "object",
-                    "properties": {
-                        "podPriority": {
-                            "type": "object",
-                            "properties": {
-                                "enabled": {
-                                    "type": "boolean"
-                                }
-                            }
-                        },
-                        "userPlaceholder": {
-                            "type": "object",
-                            "properties": {
-                                "enabled": {
-                                    "type": "boolean"
-                                }
-                            }
-                        },
-                        "userScheduler": {
-                            "type": "object",
-                            "properties": {
-                                "enabled": {
-                                    "type": "boolean"
-                                }
-                            }
-                        }
-                    }
-                },
-                "singleuser": {
-                    "type": "object",
-                    "properties": {
-                        "networkPolicy": {
-                            "type": "object",
-                            "properties": {
-                                "enabled": {
-                                    "type": "boolean"
-                                }
-                            }
-                        },
-                        "storage": {
-                            "type": "object",
-                            "properties": {
-                                "dynamic": {
-                                    "type": "object",
-                                    "properties": {
-                                        "storageClass": {
-                                            "type": "string"
+                                            "type": "string",
+                                            "form": true
                                         }
                                     }
                                 }
                             }
                         }
                     }
-                }
-            }
-        },
-        "spark": {
-            "type": "object",
-            "properties": {
-                "enabled": {
-                    "type": "boolean"
+                },
+                "spark": {
+                    "type": "object",
+                    "title": "Enable spark submission",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean",
+                            "form": true
+                        }
+                    }
                 }
             }
         }
