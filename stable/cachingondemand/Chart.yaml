@@ -1,3 +1,5 @@
+annotations:
+  category: test
 apiVersion: v1
 appVersion: "4.11"
 description: A Helm chart for the deployment of a XCache cluster

@@ -1,3 +1,5 @@
+annotations:
+  category: test
 apiVersion: v1
 name: spark
 version: 2.4.5

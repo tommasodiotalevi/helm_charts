@@ -1,3 +1,5 @@
+annotations:
+  category: stable
 apiVersion: v1
 name: JHUBaaS
 version: 0.0.7
