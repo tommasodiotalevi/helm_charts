@@ -20,13 +20,13 @@
                     "properties": {
                         "extraEnv": {
                             "type": "object",
-                            "form": true,
                             "properties": {
                                 "ADMIN_OAUTH_GROUPS": {
                                     "type": "string"
                                 },
                                 "OAUTH_CALLBACK_URL": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "form": true
                                 },
                                 "OAUTH_ENDPOINT": {
                                     "type": "string"
