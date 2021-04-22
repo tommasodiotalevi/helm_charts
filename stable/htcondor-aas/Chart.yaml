@@ -3,8 +3,10 @@ appVersion: 8.8.9
 description: A Helm chart for the deployment of HTCondor cluster
 name: htcondor
 version: 1.3.0
+icon: https://research.cs.wisc.edu/htcondor/images/HTCondor_wiki_logo_small.png
 maintainers:
   - name: ttedesch
     email: tommaso.tedeschi@pg.infn.it
   - name: dciangot
     email: diego.ciangottini@pg.infn.it
+home: https://dodas-ts.github.io/helm_charts/stable/htcondor/
