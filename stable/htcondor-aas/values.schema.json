@@ -210,10 +210,22 @@
                     "type": "object",
                     "properties": {
                         "cpu": {
-                            "type": "string"
+                            "type": "string",
+                            "title": "Schedd CPUs",
+                            "form": true,
+                            "render": "slider",
+                            "sliderMin": 1,
+                            "sliderMax": 10000,
+                            "sliderUnit": "m"
                         },
                         "memory": {
-                            "type": "string"
+                            "type": "string",
+                            "title": "Schedd Memory",
+                            "form": true,
+                            "render": "slider",
+                            "sliderMin": 1,
+                            "sliderMax": 16000,
+                            "sliderUnit": "Mi"
                         }
                     }
                 },
