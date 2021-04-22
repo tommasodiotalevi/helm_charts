@@ -18,15 +18,10 @@
             }
         },
         "ingress": {
-            "type": "object",
-            "properties": {
-                "enabled": {
-                    "type": "boolean",
-                    "form": true,
-                    "title": "Use a custom hostname",
-                    "description": "Enable the ingress resource that allows you to access the JHUB installation."
-                }
-            }
+            "type": "boolean",
+            "form": true,
+            "title": "Use a custom hostname",
+            "description": "Enable the ingress resource that allows you to access the JHUB installation."
         },
         "hostname": {
                     "type": "string",
