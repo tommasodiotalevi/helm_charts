@@ -48,7 +48,7 @@ jupyterhub:
   hub:
     image:
       name: dodasts/jupyterhub
-      tag: '1.3.0-infncloud'
+      tag: '1.3.0-infncloud-pre8'
     cookieSecret: <PUT HERE A RANDOM TOKEN openssl rand -hex 32>
     networkPolicy:
       enabled: false
