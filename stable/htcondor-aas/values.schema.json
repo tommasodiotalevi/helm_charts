@@ -191,7 +191,13 @@
                                     "type": "boolean"
                                 },
                                 "size": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "title": "Schedd Spool Volume Size",
+                                    "form": true,
+                                    "render": "slider",
+                                    "sliderMin": 1,
+                                    "sliderMax": 100,
+                                    "sliderUnit": "Gi"
                                 },
                                 "storageClass": {
                                     "type": "string"
@@ -257,12 +263,14 @@
                     "type": "object",
                     "properties": {
                         "name": {
+                            "form": true,
                             "type": "string"
                         },
                         "pullPolicy": {
                             "type": "string"
                         },
                         "tag": {
+                            "form": true,
                             "type": "string"
                         }
                     }
@@ -274,10 +282,22 @@
                     "type": "object",
                     "properties": {
                         "cpu": {
-                            "type": "string"
+                            "type": "string",
+                            "title": "WN CPUs",
+                            "form": true,
+                            "render": "slider",
+                            "sliderMin": 1,
+                            "sliderMax": 10000,
+                            "sliderUnit": "m"
                         },
                         "memory": {
-                            "type": "string"
+                            "type": "string",
+                            "title": "WN Memory",
+                            "form": true,
+                            "render": "slider",
+                            "sliderMin": 1,
+                            "sliderMax": 16000,
+                            "sliderUnit": "Mi"
                         }
                     }
                 },
