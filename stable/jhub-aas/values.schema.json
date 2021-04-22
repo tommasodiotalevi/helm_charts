@@ -28,7 +28,7 @@
                     "form": true,
                     "hidden": {
                         "value": false,
-                        "path": "jupyterhub/ingress/enabled"
+                        "path": "ingress"
                     },
                     "title": "Hostname"
         },
