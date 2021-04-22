@@ -14,6 +14,32 @@
                             "title": "Enable removal of idle notebooks"
                         }
                     }
+                },
+                "hub": {
+                    "type": "object",
+                    "properties": {
+                        "extraEnv": {
+                            "type": "object",
+                            "form": true,
+                            "properties": {
+                                "ADMIN_OAUTH_GROUPS": {
+                                    "type": "string"
+                                },
+                                "OAUTH_CALLBACK_URL": {
+                                    "type": "string"
+                                },
+                                "OAUTH_ENDPOINT": {
+                                    "type": "string"
+                                },
+                                "OAUTH_GROUPS": {
+                                    "type": "string"
+                                },
+                                "WITH_GPU": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
                 }
             }
         },
