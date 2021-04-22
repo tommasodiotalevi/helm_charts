@@ -13,6 +13,7 @@
                             "form": true,
                             "title": "Enable removal of idle notebooks"
                         }
+                    }
                 },
                 "ingress": {
                     "type": "object",
@@ -57,13 +58,15 @@
                         }
                     }
                 },
-        "spark": {
-            "type": "object",
-            "title": "Enable spark submission",
-            "properties": {
-                "enabled": {
-                    "type": "boolean",
-                    "form": true
+                "spark": {
+                    "type": "object",
+                    "title": "Enable spark submission",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean",
+                            "form": true
+                        }
+                    }
                 }
             }
         }
