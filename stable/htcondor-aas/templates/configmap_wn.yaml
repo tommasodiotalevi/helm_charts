@@ -43,4 +43,6 @@ data:
     CERTIFICATE_MAPFILE = /home/uwdir/condormapfile
     GSI_DAEMON_DIRECTORY = /etc/grid-security
     CCB_ADDRESS = $(COLLECTOR_HOST)
+    SLOT_TYPE_1 = {{ .Values.wn.slotType }}
+    SLOT_TYPE_1_PARTITIONABLE = TRUE
 {{ .Values.wn.config | indent 4 }}

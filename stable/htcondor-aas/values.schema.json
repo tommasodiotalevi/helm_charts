@@ -314,6 +314,8 @@
                     }
                 },
                 "slotType": {
+                    "form": true,
+                    "title": "Define the partitionable slot resources",
                     "type": "string"
                 }
             }
