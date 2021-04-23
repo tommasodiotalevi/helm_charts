@@ -1,0 +1,148 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "htcondor": {
+            "type": "object",
+            "properties": {
+                "cvmfs": {
+                    "type": "object",
+                    "properties": {
+                        "defaultLocalConfig": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "content": {
+                                        "type": "string"
+                                    },
+                                    "file": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "image": {
+                            "type": "string"
+                        },
+                        "pullPolicy": {
+                            "type": "string"
+                        },
+                        "replicas": {
+                            "type": "integer"
+                        },
+                        "repoList": {
+                            "type": "string"
+                        },
+                        "tag": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "master": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "hostname": {
+                            "type": "null"
+                        },
+                        "publicIP": {
+                            "type": "null"
+                        }
+                    }
+                },
+                "schedd": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "squid": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "ttsCache": {
+                    "type": "object",
+                    "properties": {
+                        "iamClientId": {
+                            "form": true,
+                            "type": "null"
+                        },
+                        "iamClientSecret": {
+                            "form": true,
+                            "type": "null"
+                        },
+                        "iamToken": {
+                            "form": true,
+                            "type": "null"
+                        },
+                        "image": {
+                            "type": "string"
+                        },
+                        "tag": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "wn": {
+                    "type": "object",
+                    "properties": {
+                        "args": {
+                            "type": "string"
+                        },
+                        "image": {
+                            "form": true,
+                            "type": "null"
+                        },
+                        "siteConfCMS": {
+                            "type": "object",
+                            "properties": {
+                                "enabled": {
+                                    "type": "boolean"
+                                },
+                                "files": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "content": {
+                                                "type": "string"
+                                            },
+                                            "filename": {
+                                                "type": "string"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "path": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "numCPUS": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "tag": {
+                            "form": true,
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

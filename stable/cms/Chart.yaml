@@ -1,0 +1,14 @@
+annotations:
+  category: stable
+apiVersion: v1
+name: CMS-experiment
+version: 0.0.1
+appVersion: 8.9.3
+description: HTCondor startd's pool for CMS experiment
+keywords:
+- cms
+- htcondor
+icon: https://laser-caltech.web.cern.ch/images/Logo/CMS%20logo.jpeg
+maintainers:
+- name: dciangot
+  email: diego.ciangottini@pg.infn.it
