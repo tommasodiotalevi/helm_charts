@@ -1,3 +1,4 @@
+{{- if .Values.schedd.enabled }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -45,3 +46,4 @@ data:
     TCP_FORWARDING_HOST = {{ .Values.schedd.hostname }}
 
      {{ .Values.schedd.extraconfig | indent 4 }}
+{{- end }}

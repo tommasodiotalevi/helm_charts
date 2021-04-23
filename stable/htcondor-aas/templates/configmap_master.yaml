@@ -1,3 +1,4 @@
+{{- if .Values.master.enabled }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -35,3 +36,4 @@ data:
     TOOL_DEBUG=D_FULLDEBUG,D_SECURITY
     SHARED_PORT_ARGS = -p {{ .Values.master.service.targetPort }}
     TCP_FORWARDING_HOST = {{ .Values.master.publicIP }}
+{{- end }}

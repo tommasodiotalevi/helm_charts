@@ -1,3 +1,4 @@
+{{- if .Values.master.enabled }}
 apiVersion: v1 
 kind: Service 
 metadata:
@@ -12,3 +13,4 @@ spec:
       name: collector
   selector:
     app.kubernetes.io/name: master
+{{- end }}

@@ -1,3 +1,4 @@
+{{- if .Values.schedd.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -72,3 +73,5 @@ spec:
       app.kubernetes.io/name: schedd
 
   replicas: 1
+
+{{- end }}

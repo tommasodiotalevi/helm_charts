@@ -55,6 +55,16 @@
                         "publicIP": {
                             "form": "true",
                             "type": "string"
+                        },
+                        "service": {
+                            "type": "object",
+                            "properties": {
+                                "nodePort": {
+                                    "title": "Collector port",
+                                    "form": true,
+                                    "type": "integer"
+                                }
+                            }
                         }
                     }
                 },

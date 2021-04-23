@@ -123,6 +123,7 @@
                     "type": "object",
                     "properties": {
                         "nodePort": {
+                            "form": true,
                             "type": "integer"
                         },
                         "targetPort": {
@@ -233,6 +234,7 @@
                     "type": "object",
                     "properties": {
                         "nodePort": {
+                            "form": true,
                             "type": "integer"
                         },
                         "targetPort": {

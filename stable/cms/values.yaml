@@ -8,8 +8,10 @@ htcondor:
   schedd:
     enabled: false
   master:
-    publicIP: <MASTER PUBLIC IP>
-    hostname: <MASTER PUBLIC IP>.myip.cloud.infn.it
+    publicIP: <COLLECTOR PUBLIC IP>
+    hostname: <COLLECTOR HOST>
+    service:
+      nodePort: 9618
     enabled: false
   squid:
     enabled: true
