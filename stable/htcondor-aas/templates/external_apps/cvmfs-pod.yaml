@@ -51,8 +51,8 @@ spec:
                 values:
                 - cvmfs
             topologyKey: kubernetes.io/hostname
-{{- if .Values.htcWn.nodeSelector }}
-{{ .Values.htcWn.nodeSelector | indent 8 }}
+{{- if .Values.wn.nodeSelector }}
+{{ .Values.wn.nodeSelector | indent 8 }}
 {{- end }}
       dnsPolicy: None
       dnsConfig:
