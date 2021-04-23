@@ -2,7 +2,7 @@ annotations:
   category: stable
 apiVersion: v1
 name: CMS-experiment
-version: 0.0.5
+version: 0.0.6
 appVersion: 8.9.3
 description: HTCondor startd's pool for CMS experiment
 keywords:
