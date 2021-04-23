@@ -67,6 +67,13 @@ spec:
         - /launch_squid.sh
       {{- end }}
       - name: cvmfs
+        livenessProbe:
+          exec:
+            command:
+            - ls
+            - /cvmfs/*
+          initialDelaySeconds: 30
+          periodSeconds: 600
         image: "{{ .Values.cvmfs.image }}:{{ .Values.cvmfs.tag }}"
         imagePullPolicy: {{ .Values.cvmfs.pullPolicy }}
         env:

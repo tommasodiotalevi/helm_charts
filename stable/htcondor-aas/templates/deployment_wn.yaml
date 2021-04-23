@@ -68,6 +68,15 @@ spec:
             mountPath: /root/proxy
       {{- end }}
       - name: wn
+        {{- if .Values.cvmfs.enabled }}
+        livenessProbe:
+          exec:
+            command:
+            - ls
+            - /cvmfs/*
+          initialDelaySeconds: 30
+          periodSeconds: 600
+        {{- end }}
         securityContext:
           capabilities:
             add:
