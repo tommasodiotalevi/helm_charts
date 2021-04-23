@@ -102,8 +102,17 @@
                             "type": "string"
                         },
                         "image": {
-                            "form": true,
-                            "type": "string"
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "form": true,
+                                    "type": "string"
+                                },
+                                "tag": {
+                                    "form": true,
+                                    "type": "string"
+                                }
+                            }
                         },
                         "siteConfCMS": {
                             "type": "object",
@@ -135,10 +144,6 @@
                                     "type": "integer"
                                 }
                             }
-                        },
-                        "tag": {
-                            "form": true,
-                            "type": "string"
                         }
                     }
                 }
