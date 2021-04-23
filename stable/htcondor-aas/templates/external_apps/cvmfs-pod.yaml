@@ -59,6 +59,13 @@ spec:
         nameservers:
         - 8.8.8.8
       containers:
+      {{- if .Values.squid.enabled }}
+      - name: squid
+        image: "{{ .Values.squid.image }}:{{ .Values.squid.tag }}"
+        imagePullPolicy: {{ .Values.squid.pullPolicy }}
+        command:
+        - /launch_squid.sh
+      {{- if .Values.squid.enabled }}
       - name: cvmfs
         image: "{{ .Values.cvmfs.image }}:{{ .Values.cvmfs.tag }}"
         imagePullPolicy: {{ .Values.cvmfs.pullPolicy }}

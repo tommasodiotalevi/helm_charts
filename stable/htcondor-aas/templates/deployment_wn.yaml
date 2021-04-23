@@ -42,6 +42,13 @@ spec:
       serviceAccountName: tts-account
       {{- end }}
       containers:
+      {{- if .Values.squid.enabled }}
+      - name: squid
+        image: "{{ .Values.squid.image }}:{{ .Values.squid.tag }}"
+        imagePullPolicy: {{ .Values.squid.pullPolicy }}
+        command:
+        - /launch_squid.sh
+      {{- if .Values.squid.enabled }}
       {{- if .Values.ttsCache.enabled }}
       - name: tts
         imagePullPolicy: "{{ .Values.ttsCache.pullPolicy }}"

@@ -107,7 +107,6 @@ squid:
   image: dodasts/squid
   tag: v1.1.0-dodas
   pullPolicy: IfNotPresent
-  replicas: 1
 
   # Service Port
   port: 31128
