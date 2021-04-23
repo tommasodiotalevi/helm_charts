@@ -49,10 +49,12 @@
                             "type": "boolean"
                         },
                         "hostname": {
-                            "type": "null"
+                            "form": "true",
+                            "type": "string"
                         },
                         "publicIP": {
-                            "type": "null"
+                            "form": "true",
+                            "type": "string"
                         }
                     }
                 },
