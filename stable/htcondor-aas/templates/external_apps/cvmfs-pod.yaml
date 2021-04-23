@@ -65,7 +65,7 @@ spec:
         imagePullPolicy: {{ .Values.squid.pullPolicy }}
         command:
         - /launch_squid.sh
-      {{- if .Values.squid.enabled }}
+      {{- end }}
       - name: cvmfs
         image: "{{ .Values.cvmfs.image }}:{{ .Values.cvmfs.tag }}"
         imagePullPolicy: {{ .Values.cvmfs.pullPolicy }}

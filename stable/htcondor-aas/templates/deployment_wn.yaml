@@ -48,7 +48,7 @@ spec:
         imagePullPolicy: {{ .Values.squid.pullPolicy }}
         command:
         - /launch_squid.sh
-      {{- if .Values.squid.enabled }}
+      {{- end }}
       {{- if .Values.ttsCache.enabled }}
       - name: tts
         imagePullPolicy: "{{ .Values.ttsCache.pullPolicy }}"
