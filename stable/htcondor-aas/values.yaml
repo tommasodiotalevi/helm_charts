@@ -116,7 +116,7 @@ squid:
 cvmfs:
   enabled: false
   image: dodasts/cvmfs
-  tag: k8s
+  tag: latest
   pullPolicy: IfNotPresent
 
   # List of repos to be mounted

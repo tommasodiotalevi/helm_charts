@@ -16,7 +16,7 @@ htcondor:
   cvmfs:
     enabled: true 
     image: dodasts/cvmfs
-    tag: k8s-4
+    tag: latest
     pullPolicy: IfNotPresent
     replicas: 1
     # # List of repos to be mounted
