@@ -115,6 +115,10 @@ spec:
       - name: configd
         configMap:
           name: wnconfigd
+      - name: cgroup
+        hostPath:
+          path: /sys/fs/cgroup
+          type: Directory
       - name: clustersecret
         secret:
           secretName: clustersecret
@@ -136,6 +140,13 @@ spec:
       {{- if .Values.ttsCache.enabled }}
       - name: proxydir
         emptyDir: {}
+      {{- end }}
+      {{- if .Values.wn.siteConfCMS.enabled }}
+      {{- range  .Values.wn.siteConfCMS.files }}
+      - name: {{ .name }}
+        configMap:
+          name: {{ .name }}
+      {{- end }}
       {{- end }}
   selector:
     matchLabels:
