@@ -8,8 +8,8 @@ htcondor:
   schedd:
     enabled: false
   master:
-    publicIP:
-    hostname:
+    publicIP: <MASTER PUBLIC IP>
+    hostname: <MASTER PUBLIC IP>.myip.cloud.infn.it
     enabled: false
   squid:
     enabled: true
