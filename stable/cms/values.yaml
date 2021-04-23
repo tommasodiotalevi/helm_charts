@@ -33,7 +33,7 @@ htcondor:
       - file: grid.cern.ch.conf
         content: \"CVMFS_HTTP_PROXY=http://{{ cms_config_mysquid_host }}:{{ cms_config_mysquid_port }}\"
   wn:
-    image: 
+    image: dodasts/cms
     tag: latest
     args: /usr/local/bin/dodas.sh
     siteConfCMS:

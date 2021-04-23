@@ -77,15 +77,15 @@
                     "properties": {
                         "iamClientId": {
                             "form": true,
-                            "type": "null"
+                            "type": "string"
                         },
                         "iamClientSecret": {
                             "form": true,
-                            "type": "null"
+                            "type": "string"
                         },
                         "iamToken": {
                             "form": true,
-                            "type": "null"
+                            "type": "string"
                         },
                         "image": {
                             "type": "string"
@@ -103,7 +103,7 @@
                         },
                         "image": {
                             "form": true,
-                            "type": "null"
+                            "type": "string"
                         },
                         "siteConfCMS": {
                             "type": "object",
