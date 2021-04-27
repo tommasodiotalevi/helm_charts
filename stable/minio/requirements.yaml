@@ -1,5 +1,5 @@
 dependencies:
 
-- name: minio
+- name: minio-operator
   version: "4.0.8"
   repository: https://operator.min.io/

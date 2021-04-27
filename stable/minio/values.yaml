@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-minio:
+minio-operator:
 
   # Default values for minio-operator.
   operator:
