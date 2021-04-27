@@ -49,8 +49,8 @@ htcondor:
   wn:
     replicas: 1
     image:
-      name:  ttedesch/htcondor-execute
-      tag:  "root-tokensv2"
+      name:  dodasts/htcondor
+      tag:  "v0.1.0-k8s-ams "
       pullPolicy: IfNotPresent
     # Condor slot type
     slotType: cpus=1, mem=2000
@@ -114,28 +114,38 @@ htcondor:
 
   # CVMFS mount on slave: configuration
   cvmfs:
-    enabled: false
+    enabled: true
     image: dodasts/cvmfs
     tag: latest
     pullPolicy: IfNotPresent
 
     # List of repos to be mounted
     repoList: cms.cern.ch  grid.cern.ch  oasis.cern.ch  singularity.opensciencegrid.org 
-
-    privKey: []
-    #  - name: spiga
-    #    path: spiga.local.repo
-    #    filename: spiga.local.repo.pub
-    #    content: |
-    #      test
-
-    # default.local file content
-    defaultLocalConfig: []
-    #  - file: spiga.local.repo.conf
-    #    content: |
-    #      spiga.local.repo.conf: |-
-    #        property.1=value-1
-    #        property.2=value-2
+    privKey: 
+      - name: ams
+        filename: ams.local.repo.pub
+        path: \"keys/ams.local.repo\"
+        content: | 
+          -----BEGIN PUBLIC KEY-----
+              <CHANGEME>
+          -----END PUBLIC KEY-----
+    defaultLocalConfig:
+      - file: ams.local.repo.conf
+        content: |
+          CVMFS_SERVER_URL=http://<CHANGEME>/cvmfs/ams.local.repo
+          CVMFS_PUBLIC_KEY=/etc/cvmfs/keys/ams.local.repo/ams.local.repo.pub
+          CVMFS_HTTP_PROXY=DIRECT
+          CVMFS_DEBUGFILE=/tmp/cvmfs_ams_local.log
+      - file: ams.cern.ch.conf
+        content: |
+          CVMFS_SERVER_URL=http://cvmfs-stratum-one.cern.ch/cvmfs/ams.cern.ch
+          CVMFS_HTTP_PROXY=DIRECT
+          CVMFS_DEBUGFILE=/tmp/cvmfs_ams_cern.log
+      - file: sft.cern.ch.conf
+        content: |
+          CVMFS_SERVER_URL=http://cvmfs-stratum-one.cern.ch/cvmfs/sft.cern.ch
+          CVMFS_HTTP_PROXY=DIRECT
+          CVMFS_DEBUGFILE=/tmp/cvmfs_sft.log
 
   ttsCache:
     image: dodasts/tts-cache
