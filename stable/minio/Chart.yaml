@@ -2,9 +2,9 @@ annotations:
   category: stable
 apiVersion: v1
 appVersion: "1"
-description: A Helm chart for the deployment of multi-oidc-user MINIO+OPA
+description: A Helm chart for the deployment of multi-oidc-user MINIO+OPA as a Service
 name: minio
-version: 1.0.1
+version: 1.0.2
 icon: https://min.io/resources/img/logo/MINIO_Bird.png
 maintainers:
   - name: dciangot

@@ -59,13 +59,45 @@ htcondor:
       cpu: "900m" 
     # Define you own persistent volume to mount
     persistentVolume:
-      pv: 
-        name: ""
-        spec: ""
+      pv:
+        name: "data-rclone-1"
+        spec: |
+          accessModes:
+          - ReadWriteMany
+          capacity:
+            storage: 800Gi
+          storageClassName: rclone
+          csi:
+            driver: csi-rclone
+            volumeHandle: data-id
+            volumeAttributes:
+              remote: "s3"
+              remotePath: "home"
+              s3-provider: "Minio"
+              s3-endpoint: "https://<CHANGEME>:9000"
+              s3-access-key-id: "CHANGEME"
+              s3-secret-access-key: "CHANGEME"
+              no-check-certificate: "true"
+              vfs-cache-mode: "writes"
+              vfs-cache-max-size: "4G"
+              buffer-size: 2G
+              vfs-read-chunk-size: "512k"
+              vfs-read-chunk-size-limit: "10M"
+              no-modtime: "true"
       pvc:
-        name: ""
-        mountPath: ""
-        spec: ""
+        name: "data-rclone-1"
+        mountPath: "/home/Volume_Fermi"
+        spec: |
+          accessModes:
+          - ReadWriteMany
+          resources:
+            requests:
+              storage: "799Gi"
+          storageClassName: rclone
+          volumeName: data-rclone-1
+          selector:
+            matchLabels:
+              name: data-rclone-1
     # Additional custom config file
     config: ""
     # e.g. classAds
@@ -122,21 +154,20 @@ htcondor:
     # List of repos to be mounted
     repoList: cms.cern.ch  grid.cern.ch  oasis.cern.ch  singularity.opensciencegrid.org 
 
-    privKey: []
-    #  - name: spiga
-    #    path: spiga.local.repo
-    #    filename: spiga.local.repo.pub
-    #    content: |
-    #      test
-
-    # default.local file content
-    defaultLocalConfig: []
-    #  - file: spiga.local.repo.conf
-    #    content: |
-    #      spiga.local.repo.conf: |-
-    #        property.1=value-1
-    #        property.2=value-2
-
+    privKey: 
+      - name: fermi
+        filename: fermi.local.repo.pub
+        path: \"keys\"
+        content: | 
+          -----BEGIN PUBLIC KEY-----
+          CHANGEME
+          -----END PUBLIC KEY-----
+    defaultLocalConfig:
+      - file: fermi.local.repo.conf
+        content: |
+          CVMFS_SERVER_URL=http://193.204.89.114/cvmfs/fermi.local.repo
+          CVMFS_PUBLIC_KEY=/etc/cvmfs/keys/fermi.local.repo.pub
+          CVMFS_HTTP_PROXY=DIRECT
   ttsCache:
     image: dodasts/tts-cache
     tag: v0.1.3-k8s-12

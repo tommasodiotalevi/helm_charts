@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: opa-config
+data: 
+  config.yaml: |
+    services:
+      - name: bundle-repo
+        url: https://dodas-ts.github.io/opa-bundles/
+
+    bundles:
+      authz:
+        service: bundle-repo
+        resource: DODAS-bundle.tar.gz
+        persist: true
+        polling:
+          min_delay_seconds: 10
+          max_delay_seconds: 20
