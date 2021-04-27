@@ -1,0 +1,14 @@
+annotations:
+  category: stable
+apiVersion: v1
+name: FermiLAT-experiment
+version: 0.0.1
+appVersion: 8.9.3
+description: HTCondor pool for Fermi experiment
+keywords:
+- ams
+- htcondor
+#icon: https://upload.wikimedia.org/wikipedia/commons/2/25/AMS-02_Logo.png
+maintainers:
+- name: dciangot
+  email: diego.ciangottini@pg.infn.it

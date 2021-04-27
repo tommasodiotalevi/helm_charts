@@ -1,0 +1,164 @@
+# Default values for htcondor.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+htcondor:
+  cluster:
+    secret: <shared secret here>
+
+  schedd: 
+    mapfile: |
+      SCITOKENS https://dodas-iam.cloud.cnaf.infn.it/ dodas@users.htcondor.org
+      PASSWORD (*.) condor
+      GSI (.*) anonymous
+    extraconfig: ""
+    hostname: localhost
+    service:
+      type: NodePort
+      nodePort: 31618
+      targetPort: 31618
+    image:
+      name: htcondor/submit
+      tag:  "8.9.9-el7"
+      pullPolicy: IfNotPresent
+    persistence:
+      spooldir:
+        enabled: true
+        storageClass: longhorn
+        size: 20Gi 
+    requests:
+      memory: "500M"
+      cpu: "100m" 
+
+  master:
+    publicIP: <master public IP>
+    extraconfig: ""
+    hostname: localhost
+    service:
+      type: NodePort
+      nodePort: 30618
+      targetPort: 30618
+    image:
+      name: htcondor/cm
+      tag:  "8.9.9-el7"
+      pullPolicy: IfNotPresent
+    requests:
+      memory: "500M"
+      cpu: "100m" 
+
+  wn:
+    replicas: 1
+    image:
+      name:  ttedesch/htcondor-execute
+      tag:  "root-tokensv2"
+      pullPolicy: IfNotPresent
+    # Condor slot type
+    slotType: cpus=1, mem=2000
+    requests:
+      memory: "1500M"
+      cpu: "900m" 
+    # Define you own persistent volume to mount
+    persistentVolume:
+      pv: 
+        name: ""
+        spec: ""
+      pvc:
+        name: ""
+        mountPath: ""
+        spec: ""
+    # Additional custom config file
+    config: ""
+    # e.g. classAds
+    # MachineOwner = "chemistry"
+    # STARTD_ATTRS = $(STARTD_ATTRS) MachineOwner
+      # ConfigMap site-Local
+    siteConfCMS:
+      enabled: false
+      numCPUS: 1
+      files:
+        - name: sitetest
+          path: test
+          filename: test.txt
+          content: |
+            test
+
+  htcClient:
+    enabled: false
+    image:
+      name: htcondor/execute
+      pullPolicy: IfNotPresent
+      tag: "8.9.9-el7"
+
+  prometheusExporter:
+    image:  
+      name: ttedesch/htcondor-exporter
+      pullPolicy: IfNotPresent
+      tag: "v2"
+
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 10
+    targetMetric: condor_slot_activity_busy
+    targetMetricValue: 0.75
+
+  # Enable Squid server
+  squid:
+    enabled: false
+    image: dodasts/squid
+    tag: v1.1.0-dodas
+    pullPolicy: IfNotPresent
+
+    # Service Port
+    port: 31128
+
+  # CVMFS mount on slave: configuration
+  cvmfs:
+    enabled: false
+    image: dodasts/cvmfs
+    tag: latest
+    pullPolicy: IfNotPresent
+
+    # List of repos to be mounted
+    repoList: cms.cern.ch  grid.cern.ch  oasis.cern.ch  singularity.opensciencegrid.org 
+
+    privKey: []
+    #  - name: spiga
+    #    path: spiga.local.repo
+    #    filename: spiga.local.repo.pub
+    #    content: |
+    #      test
+
+    # default.local file content
+    defaultLocalConfig: []
+    #  - file: spiga.local.repo.conf
+    #    content: |
+    #      spiga.local.repo.conf: |-
+    #        property.1=value-1
+    #        property.2=value-2
+
+  ttsCache:
+    image: dodasts/tts-cache
+    tag: v0.1.3-k8s-12
+    iamToken: 
+    iamClientId:
+    iamClientSecret: 
+
+    pullPolicy: IfNotPresent
+    replicas: 1
+
+    # TO BE IMPLEMENTED: SCIM read client for automatic condor user mapping
+    iamScimClientId:
+    iamScimSecret:
+    iamMapGroup: ALL
+
+    # TTS endpoint configuration
+    proxyAudience: "https://dodas-tts.cloud.cnaf.infn.it"
+    proxyTTS: "https://dodas-tts.cloud.cnaf.infn.it"
+    proxyIAMEndpoint: "https://dodas-iam.cloud.cnaf.infn.it/"
+    proxyCredentialEndpoint: "https://dodas-tts.cloud.cnaf.infn.it/api/v2/iam/credential"
+
+  # TTS proxy cache endpoint address and port
+  proxyCacheHost:
+  proxyCachePort: 30080
+
