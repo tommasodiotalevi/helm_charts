@@ -272,11 +272,11 @@ jupyterhub:
                 self.mem_guarantee = memory
                 self.mem_limit = memory
 
-                options['gpu'] = formdata['gpu']
-                use_gpu = True if ''.join(formdata['gpu'])=="Y" else False
-                if use_gpu:
-                    self.extra_resource_guarantees = {"nvidia.com/gpu": "1"}
-                    self.extra_resource_limit = {"nvidia.com/gpu": "1"}
+                #options['gpu'] = formdata['gpu']
+                #use_gpu = True if ''.join(formdata['gpu'])=="Y" else False
+                #if use_gpu:
+                #    self.extra_resource_guarantees = {"nvidia.com/gpu": "1"}
+                #    self.extra_resource_limit = {"nvidia.com/gpu": "1"}
                 return options
 
         c.JupyterHub.spawner_class = CustomSpawner
