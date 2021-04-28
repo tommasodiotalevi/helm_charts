@@ -3,7 +3,8 @@ kind: Secret
 metadata:
   name: submission-endpoint
 stringData:
-  url: "{{ .Values.master.publicIP }}.myip.cloud.infn.it:30618"
+  collector-url: "{{ .Values.master.publicIP }}.myip.cloud.infn.it:30618"
+  schedd-url: "schedd.{{ .Release.Namespace }}.svc.cluster.local"
 ---
 apiVersion: v1
 kind: Secret
