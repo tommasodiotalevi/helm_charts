@@ -1,6 +1,13 @@
 apiVersion: v1
 kind: Secret
 metadata:
+  name: submission-endpoint
+stringData:
+  url: "{{ .Values.master.publicIP }}.myip.cloud.infn.it:30618"
+---
+apiVersion: v1
+kind: Secret
+metadata:
   name: ca-key-pair
 stringData:
   tls.crt: |
@@ -129,8 +136,8 @@ spec:
     - {{ .Values.master.publicIP }}
   # Issuer references are always required.
   issuerRef:
-    #name: ca-issuer
-    name: self-htc-issuer
+    name: ca-issuer
+    #name: self-htc-issuer
     kind: Issuer
     #name: letsencrypt-staging
     #kind: ClusterIssuer
