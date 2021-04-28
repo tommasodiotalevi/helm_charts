@@ -29,7 +29,7 @@ data:
     CERTIFICATE_MAPFILE = /home/uwdir/condormapfile
     SEC_PASSWORD_FILE = /etc/pwd/pool_password
     GSI_DAEMON_DIRECTORY = /etc/grid-security
-    NETWORK_HOSTNAME = schedd.condor.svc.cluster.local
+    NETWORK_HOSTNAME = schedd.{{ .Release.Namespace }}.svc.cluster.local
     QUEUE_SUPER_USER_MAY_IMPERSONATE = .*
     QUEUE_SUPER_USERS = condor, *@users.htcondor.org
     QUEUE_ALL_USERS_TRUSTED = True
@@ -42,7 +42,7 @@ data:
     MAX_SCHEDD_AUDIT_LOG = 1d
     MAX_NUM_SCHEDD_AUDIT_LOG = 90
     SHARED_PORT_ARGS = -p {{ .Values.schedd.service.targetPort }}
-    PRIVATE_NETWORK_NAME = schedd.condor.svc.cluster.local
+    PRIVATE_NETWORK_NAME = schedd.{{ .Release.Namespace }}.svc.cluster.local
     TCP_FORWARDING_HOST = {{ .Values.schedd.hostname }}
 
      {{ .Values.schedd.extraconfig | indent 4 }}
