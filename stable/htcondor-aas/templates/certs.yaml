@@ -1,8 +1,103 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ca-key-pair
+stringData:
+  tls.crt: |
+    -----BEGIN CERTIFICATE-----
+    MIIDuzCCAqOgAwIBAgIRAK0mNcExXZIIYi/eVYImPagwDQYJKoZIhvcNAQELBQAw
+    OzENMAsGA1UEChMEaW5mbjEqMCgGA1UEAxMhMTMxLjE1NC45Ny4xMjAubXlpcC5j
+    bG91ZC5pbmZuLml0MB4XDTIxMDQyODA4MTg1NloXDTIxMDcyNzA4MTg1NlowOzEN
+    MAsGA1UEChMEaW5mbjEqMCgGA1UEAxMhMTMxLjE1NC45Ny4xMjAubXlpcC5jbG91
+    ZC5pbmZuLml0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvXI+glcs
+    iyBKu1x3WZI736u9e64gqJDT+gUFIQ6QbkYe2qo88CKGfigxOJ32hRh/tre5Tgvb
+    yCMHfokWWTQTKhgWcoqOCLuvf9HKAAf4HGgmpwo3Noc4FCzVj+ldpTPeiA6+roQG
+    zpOiKladBG751vtGQ7mcUF+08qQ3IJTPmmRYUKhKLwq/ib/o3MctoA4+7cz3pYBs
+    S2+GTpEAe5u8KoLLumT4hyyO0uWfXMnUOTcUtUrjGiXmfyXuFByupHTw/zLRlpE8
+    dAdZW6RKf+Lg8Lc0g5qZD8Lly0BpbuXk7AaRFp3C4NQhK5fXH9Sn4uLV+OfQxfTI
+    GKK1uC12wi3MBwIDAQABo4G5MIG2MA4GA1UdDwEB/wQEAwICpDAPBgNVHRMBAf8E
+    BTADAQH/MB0GA1UdDgQWBBT0WbAERao5YePvnvpoh628UH9++DB0BgNVHREEbTBr
+    giExMzEuMTU0Ljk3LjEyMC5teWlwLmNsb3VkLmluZm4uaXSCH21hc3Rlci5jb25k
+    b3Iuc3ZjLmNsdXN0ZXIubG9jYWyCH3NjaGVkZC5jb25kb3Iuc3ZjLmNsdXN0ZXIu
+    bG9jYWyHBIOaYXgwDQYJKoZIhvcNAQELBQADggEBAIp3z11vzpB3b3S8Bf+gtaq1
+    w2va4QdMZok47Z1I2JHMZ0DpMozhfZ9V7KbNBpwe2duSfr2JeoC2ww9V3Cxklo6m
+    enUFlONPJkVIwPm/Us2cne7Qn5HybUtWHigWiBGSmzarAPc2hCqN11xTVsY42ZSV
+    68g721qYZxamhVum0SOOkjYq8K7u7l7QugbnBIblJqXMxHpjFHqwCTn2rd6H0uns
+    VVB5wsrlTjTSdtJ/WSw6ZQEseu62bLOBIZ0r+QWYoW3KZOvU/glhwBCuwUVtSKGq
+    /fztR2xK63GJDJXY6yQq5kuF6yQE8fG1KcngVFkAroD5hF3g4AJk1TyXEbzk1Q4=
+    -----END CERTIFICATE-----
+  tls.key: |
+    -----BEGIN RSA PRIVATE KEY-----
+    MIIEowIBAAKCAQEAvXI+glcsiyBKu1x3WZI736u9e64gqJDT+gUFIQ6QbkYe2qo8
+    8CKGfigxOJ32hRh/tre5TgvbyCMHfokWWTQTKhgWcoqOCLuvf9HKAAf4HGgmpwo3
+    Noc4FCzVj+ldpTPeiA6+roQGzpOiKladBG751vtGQ7mcUF+08qQ3IJTPmmRYUKhK
+    Lwq/ib/o3MctoA4+7cz3pYBsS2+GTpEAe5u8KoLLumT4hyyO0uWfXMnUOTcUtUrj
+    GiXmfyXuFByupHTw/zLRlpE8dAdZW6RKf+Lg8Lc0g5qZD8Lly0BpbuXk7AaRFp3C
+    4NQhK5fXH9Sn4uLV+OfQxfTIGKK1uC12wi3MBwIDAQABAoIBAQCINilNrAIh8lDp
+    T/2cUHFuS9xMnhFrQd636H4cm40rTI2IqVhxTFGpSZrCW4lRfyDsrkK1I/+dcdpE
+    l6qS7sdMv878AjVHgDMaUyvLQ++X9Sa9ebHjKewfTXEsLR2g15+L8hYWAmWmiC3U
+    BTyWYHiQo1CNB1qly3qd74aXjYeLOJgqHPI4rXKOlsjfKBQvfGbn+Xo4K8+Od1jc
+    Tq5kX9CbrNgR99tKrKwL40n3NN4Twpy5v7xNuoL98G9yHRPqLCc4oDtxnl/qEvx4
+    N8MZC/RCD931WNWroPqWGboC6uGfBvhlURxArambQMUrCSszTWzu5b5EqmgIdr5u
+    n9nE8lDZAoGBANepgv/fEWdagFukHL2+FY3DNt0w2Kz2ubrMXl7WEXcdcqVTcrcZ
+    CB393tdZAmMnIJd64mbNIk4xCZi+S5EoaR+iTYnEcGAV1EmaSAAuVr5etkDNHJIr
+    QlXCZaIGZDwQkWJ3s9MI/Ott7XnI64bM8F7NbjJ/3M1NG3ZMY+wg6EkDAoGBAODh
+    cdZAyR8YpVanhzg5zl5FMxxgGOi7oUoqdGtKfCI1KmytPI8SwGnENGQBMwrokQS1
+    vHMULUbuC5Ispkb33YA5kacaOnOyYErR4WXt3wLWTfIi3KZ5SZCkg504B63P/yg9
+    tmMeLgvuKuyzrJyb90yn/0JkRlbuU6W5eZ9hByetAoGATfg9ImD1m9Y+feNReNAW
+    XtBrL4EPdUkmUQC+Ra9DVTtSTa9j1Aq6wo0cWeMWV963i8yjueMEOhzEiXKTQ4HG
+    r+cv/VUGA9cgjxO2YEpglicL4VXGtJnrO7IyqGeDKawbw+vfGbcwKbXum48mh+/k
+    H4JKCvvrSlZMTXLE1YP4Nx0CgYBkPzu+9gxyJ0t1UKMvxl0fmxuIt7IC9bmV1U0m
+    kwK5QRgTcDqB0SsjOwrb1ckKQNh80AMdDc6NQwq3c93/3vjH82HhqwiJkOfqEpu3
+    E44JtrzyhuXz9Dd+Gkhtqo+JxSIKr1AB6W8/dEGAWSxGeCSK8I0S7J6KnB1/0CnO
+    ibNl1QKBgFlBwi8Dwh3za41CanNk7NSUTU2flokTN4/D5vlVz3OwcqT6L1KsLbI3
+    /zohNzOVDuRn3MO53ila3cHOd9z2GNewjdk554uvdvyH571tMJtKRJNVcflqzty8
+    T0ziJezQMDhKbKAsKS7Zi4pTr1FnT190snEM9m/bg8b+oHdGw5BU
+    -----END RSA PRIVATE KEY-----
+  ca.crt: | 
+    -----BEGIN CERTIFICATE-----
+    MIIDuzCCAqOgAwIBAgIRAK0mNcExXZIIYi/eVYImPagwDQYJKoZIhvcNAQELBQAw
+    OzENMAsGA1UEChMEaW5mbjEqMCgGA1UEAxMhMTMxLjE1NC45Ny4xMjAubXlpcC5j
+    bG91ZC5pbmZuLml0MB4XDTIxMDQyODA4MTg1NloXDTIxMDcyNzA4MTg1NlowOzEN
+    MAsGA1UEChMEaW5mbjEqMCgGA1UEAxMhMTMxLjE1NC45Ny4xMjAubXlpcC5jbG91
+    ZC5pbmZuLml0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvXI+glcs
+    iyBKu1x3WZI736u9e64gqJDT+gUFIQ6QbkYe2qo88CKGfigxOJ32hRh/tre5Tgvb
+    yCMHfokWWTQTKhgWcoqOCLuvf9HKAAf4HGgmpwo3Noc4FCzVj+ldpTPeiA6+roQG
+    zpOiKladBG751vtGQ7mcUF+08qQ3IJTPmmRYUKhKLwq/ib/o3MctoA4+7cz3pYBs
+    S2+GTpEAe5u8KoLLumT4hyyO0uWfXMnUOTcUtUrjGiXmfyXuFByupHTw/zLRlpE8
+    dAdZW6RKf+Lg8Lc0g5qZD8Lly0BpbuXk7AaRFp3C4NQhK5fXH9Sn4uLV+OfQxfTI
+    GKK1uC12wi3MBwIDAQABo4G5MIG2MA4GA1UdDwEB/wQEAwICpDAPBgNVHRMBAf8E
+    BTADAQH/MB0GA1UdDgQWBBT0WbAERao5YePvnvpoh628UH9++DB0BgNVHREEbTBr
+    giExMzEuMTU0Ljk3LjEyMC5teWlwLmNsb3VkLmluZm4uaXSCH21hc3Rlci5jb25k
+    b3Iuc3ZjLmNsdXN0ZXIubG9jYWyCH3NjaGVkZC5jb25kb3Iuc3ZjLmNsdXN0ZXIu
+    bG9jYWyHBIOaYXgwDQYJKoZIhvcNAQELBQADggEBAIp3z11vzpB3b3S8Bf+gtaq1
+    w2va4QdMZok47Z1I2JHMZ0DpMozhfZ9V7KbNBpwe2duSfr2JeoC2ww9V3Cxklo6m
+    enUFlONPJkVIwPm/Us2cne7Qn5HybUtWHigWiBGSmzarAPc2hCqN11xTVsY42ZSV
+    68g721qYZxamhVum0SOOkjYq8K7u7l7QugbnBIblJqXMxHpjFHqwCTn2rd6H0uns
+    VVB5wsrlTjTSdtJ/WSw6ZQEseu62bLOBIZ0r+QWYoW3KZOvU/glhwBCuwUVtSKGq
+    /fztR2xK63GJDJXY6yQq5kuF6yQE8fG1KcngVFkAroD5hF3g4AJk1TyXEbzk1Q4=
+    -----END CERTIFICATE-----
+
+---
+kind: Secret
+apiVersion: v1
+metadata:
+  name: example-com-tls
+type: kubernetes.io/tls
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: ca-issuer
+spec:
+  ca:
+    secretName: ca-key-pair
+---
 # define a CA to sign certificate
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
-  name: selfsigned-issuer
+  name: self-htc-issuer
 spec:
   selfSigned: {}
 ---
@@ -34,7 +129,8 @@ spec:
     - {{ .Values.master.publicIP }}
   # Issuer references are always required.
   issuerRef:
-    name: selfsigned-issuer
+    #name: ca-issuer
+    name: self-htc-issuer
     kind: Issuer
     #name: letsencrypt-staging
     #kind: ClusterIssuer
