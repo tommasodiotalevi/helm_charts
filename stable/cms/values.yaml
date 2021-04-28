@@ -35,6 +35,12 @@ htcondor:
       - file: grid.cern.ch.conf
         content: \"CVMFS_HTTP_PROXY=http://localhost:3128\"
   wn:
+    # Condor slot type
+    slotType: cpus=1, mem=2000
+    requests:
+      memory: "1500M"
+      cpu: 1
+    replicas: 1
     image:
       name: dodasts/cms
       tag: latest

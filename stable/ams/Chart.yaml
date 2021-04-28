@@ -2,7 +2,7 @@ annotations:
   category: stable
 apiVersion: v1
 name: AMS-experiment
-version: 0.0.2
+version: 0.0.3
 appVersion: 8.9.3
 description: HTCondor pool for AMS experiment
 keywords:

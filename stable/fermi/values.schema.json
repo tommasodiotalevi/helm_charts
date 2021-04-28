@@ -301,13 +301,12 @@
                             "type": "object",
                             "properties": {
                                 "cpu": {
-                                    "type": "string",
+                                    "type": "integer",
                                     "title": "WN CPUs",
                                     "form": true,
                                     "render": "slider",
                                     "sliderMin": 1,
-                                    "sliderMax": 10000,
-                                    "sliderUnit": "m"
+                                    "sliderMax": 100
                                 },
                                 "memory": {
                                     "type": "string",

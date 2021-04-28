@@ -56,7 +56,7 @@ htcondor:
     slotType: cpus=1, mem=2000
     requests:
       memory: "1500M"
-      cpu: "900m" 
+      cpu: 1
     # Define you own persistent volume to mount
     persistentVolume:
       pv:
