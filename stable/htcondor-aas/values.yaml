@@ -6,6 +6,7 @@ cluster:
   secret: <shared secret here>
 
 schedd: 
+  enabled: true
   mapfile: |
     SCITOKENS https://dodas-iam.cloud.cnaf.infn.it/ dodas@users.htcondor.org
     PASSWORD (*.) condor
@@ -30,6 +31,7 @@ schedd:
     cpu: "100m" 
 
 master:
+  enabled: true
   publicIP: <master public IP>
   extraconfig: ""
   hostname: localhost
@@ -46,6 +48,7 @@ master:
     cpu: "100m" 
 
 wn:
+  enabled: true
   replicas: 1
   image:
     name:  ttedesch/htcondor-execute
@@ -89,6 +92,7 @@ htcClient:
     tag: "8.9.9-el7"
 
 prometheusExporter:
+  enabled: false
   image:  
     name: ttedesch/htcondor-exporter
     pullPolicy: IfNotPresent
