@@ -6,7 +6,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx"
     # comment this to use your own certs
-    cert-manager.io/issuer: "selfsigned-issuer"
+    cert-manager.io/issuer: "jhub-self-issuer"
 spec:
   rules:
     - http:

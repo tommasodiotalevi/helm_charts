@@ -1,5 +1,5 @@
 #overide defaault ingress
-hostname: jhub.<PUT PUBLIC HOST>
+hostname: jhub.<PUT PUBLIC IP>.myip.cloud.infn.it
 ingress: true
 # ====
 jupyterhub:
@@ -36,7 +36,8 @@ jupyterhub:
     chp:
       networkPolicy:
         enabled: false
-    secretToken: <PUT HERE A RANDOM TOKEN openssl rand -hex 32>
+    secretToken: 72077073d819ce7a118a7dd7e2ce3eb74328cd306faa0540b1045d56113fdd0e
+    #<PUT HERE A RANDOM TOKEN openssl rand -hex 32>
 
   singleuser:
     networkPolicy:
@@ -49,7 +50,8 @@ jupyterhub:
     image:
       name: dodasts/jupyterhub
       tag: '1.3.0-infncloud-pre8'
-    cookieSecret: <PUT HERE A RANDOM TOKEN openssl rand -hex 32>
+    cookieSecret: 72077073d819ce7a118a7dd7e2ce3eb74328cd306faa0540b1045d56113fdd0e
+    #<PUT HERE A RANDOM TOKEN openssl rand -hex 32>
     networkPolicy:
       enabled: false
     args:
