@@ -86,12 +86,6 @@ stringData:
     -----END CERTIFICATE-----
 
 ---
-kind: Secret
-apiVersion: v1
-metadata:
-  name: example-com-tls
-type: kubernetes.io/tls
----
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
