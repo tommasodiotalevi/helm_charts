@@ -43,7 +43,7 @@ spec:
       volumes:
       - name: hostcerts
         secret:
-          secretName: example-com-tls
+          secretName: htcondor-tls
           defaultMode: 420
       - name: configd
         configMap:
