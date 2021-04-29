@@ -101,8 +101,8 @@ spec:
     size: 2048
   dnsNames:
   - {{ .Values.master.hostname }}
-  - master.condor.svc.cluster.local
-  - schedd.condor.svc.cluster.local
+  - master.{{ .Release.Namespace }}.svc.cluster.local
+  - "schedd.{{ .Release.Namespace }}.svc.cluster.local"
   ipAddresses:
     - {{ .Values.master.publicIP }}
   # Issuer references are always required.
