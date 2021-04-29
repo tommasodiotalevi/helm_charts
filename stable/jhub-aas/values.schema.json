@@ -43,7 +43,8 @@
                                     "hidden": {
                                         "value": false,
                                         "path": "htcondor"
-                                    }
+                                    },
+                                    "form": true
                                 },
                                 "HTCONDOR_SCHEDD_NAME": {
                                     "type": "string",
@@ -51,7 +52,8 @@
                                     "hidden": {
                                         "value": false,
                                         "path": "htcondor"
-                                    }
+                                    },
+                                    "form": true
                                 }
                             }
                         }
