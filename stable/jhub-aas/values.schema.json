@@ -36,6 +36,22 @@
                                 },
                                 "WITH_GPU": {
                                     "type": "string"
+                                },
+                                "HTCONDOR_COLLECTOR_URL": {
+                                    "type": "string",
+                                    "title": "HTCondor collector url",
+                                    "hidden": {
+                                        "value": false,
+                                        "path": "htcondor"
+                                    }
+                                },
+                                "HTCONDOR_SCHEDD_NAME": {
+                                    "type": "string",
+                                    "title": "HTCondor schedd name",
+                                    "hidden": {
+                                        "value": false,
+                                        "path": "htcondor"
+                                    }
                                 }
                             }
                         }
@@ -58,6 +74,12 @@
                     },
                     "title": "Hostname"
         },
+        "htcondor": {
+                    "title": "Enable HTCondor integration",
+                    "type": "boolean",
+                    "form": true
+                    }
+        },        
         "spark": {
                     "type": "object",
                     "title": "Enable spark submission",
