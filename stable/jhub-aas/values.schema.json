@@ -78,7 +78,6 @@
                     "title": "Enable HTCondor integration",
                     "type": "boolean",
                     "form": true
-                    }
         },        
         "spark": {
                     "type": "object",
