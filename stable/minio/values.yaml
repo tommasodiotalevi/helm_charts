@@ -111,10 +111,14 @@ minio-operator:
       serviceMetadata: {}
       ## Add environment variables to be set in MinIO container (https://github.com/minio/minio/tree/master/docs/config)
       env:
-        MINIO_POLICY_OPA_URL: "http://opa.minio.svc.cluster.local:8181/v1/data/http/base/authz/allow"
-        MINIO_IDENTITY_OPENID_CLIENT_ID: CHANGEME
-        MINIO_IDENTITY_OPENID_CONFIG_URL: https://dodas-iam.cloud.cnaf.infn.it/.well-known/openid-configuration
-        MINIO_IDENTITY_OPENID_SCOPES: "openid,email,profile,address,phone,offline_access"
+        - name: MINIO_POLICY_OPA_URL
+          value: "http://opa.minio.svc.cluster.local:8181/v1/data/http/base/authz/allow"
+        - name: MINIO_IDENTITY_OPENID_CLIENT_ID
+          value: CHANGEME
+        - name: MINIO_IDENTITY_OPENID_CONFIG_URL
+          value: https://dodas-iam.cloud.cnaf.infn.it/.well-known/openid-configuration
+        - name: MINIO_IDENTITY_OPENID_SCOPES
+          value: "openid,email,profile,address,phone,offline_access"
 
       ## PriorityClassName indicates the Pod priority and hence importance of a Pod relative to other Pods.
       ## This is applied to MinIO pods only.
