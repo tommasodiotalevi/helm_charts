@@ -3,6 +3,7 @@
 # Declare variables to be passed into your templates.
 
 console_hostname: minio-console.<PUBLIC IP HERE>.myip.cloud.infn.it
+tenant_hostname: minio1.<PUBLIC IP HERE>.myip.cloud.infn.it
 
 minio-operator:
 
