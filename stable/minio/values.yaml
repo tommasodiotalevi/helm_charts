@@ -42,8 +42,8 @@ minio-operator:
     - name: minio1
       ## Registry location and Tag to download MinIO Server image
       image:
-        repository: minio/minio
-        tag: RELEASE.2021-04-06T23-11-00Z
+        repository: dodasts/minio
+        tag: latest 
         pullPolicy: IfNotPresent
       imagePullSecrets: []
       ## If a scheduler is specified here, Tenant pods will be dispatched by specified scheduler.
