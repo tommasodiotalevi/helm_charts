@@ -6,6 +6,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
     # comment this to use your own certs
     cert-manager.io/issuer: "minio-self-issuer"
+    nginx.ingress.kubernetes.io/backend-protocol: 'HTTPS'
 spec:
   rules:
     - http:
