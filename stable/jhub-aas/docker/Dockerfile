@@ -1,4 +1,4 @@
-FROM dciangot/dodas-iam-client-rec:test5 as REGISTRATION
+FROM dodasts/dodas-iam-client-rec:v0.0.2 as REGISTRATION
 
 FROM jupyterhub/k8s-hub:0.11.1
 
