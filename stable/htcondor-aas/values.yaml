@@ -12,7 +12,7 @@ schedd:
     PASSWORD (*.) condor
     GSI (.*) anonymous
   extraconfig: ""
-  hostname: schedd.<NAMESPACE HERE>.svc.cluster.local
+  hostname: <master public IP>.myip.cloud.infn.it
   service:
     type: NodePort
     nodePort: 31618
