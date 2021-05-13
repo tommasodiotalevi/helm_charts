@@ -4,7 +4,7 @@ metadata:
   name: submission-endpoint
 stringData:
   collector-url: "{{ .Values.master.publicIP }}.myip.cloud.infn.it:30618"
-  schedd-url: "schedd.{{ .Release.Namespace }}.svc.cluster.local"
+  schedd-url: "{{ .Values.master.publicIP }}.myip.cloud.infn.it"
 ---
 apiVersion: v1
 kind: Secret
