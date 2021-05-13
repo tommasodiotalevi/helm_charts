@@ -8,7 +8,7 @@ cluster:
 schedd: 
   enabled: true
   mapfile: |
-    SCITOKENS https://dodas-iam.cloud.cnaf.infn.it/ dodas@users.htcondor.org
+    SCITOKENS https:\/\/dodas-iam.cloud.cnaf.infn.it,(.*) \1@users.htcondor.org
     PASSWORD (*.) condor
     GSI (.*) anonymous
   extraconfig: ""
@@ -18,7 +18,7 @@ schedd:
     nodePort: 31618
     targetPort: 31618
   image:
-    name: htcondor/submit
+    name: dodasts/submit
     tag:  "8.9.9-el7"
     pullPolicy: IfNotPresent
   persistence:
@@ -40,7 +40,7 @@ master:
     nodePort: 30618
     targetPort: 30618
   image:
-    name: htcondor/cm
+    name: dodasts/cm
     tag:  "8.9.9-el7"
     pullPolicy: IfNotPresent
   requests:
