@@ -29,7 +29,7 @@ data:
     CERTIFICATE_MAPFILE = /home/uwdir/condormapfile
     SEC_PASSWORD_FILE = /etc/pwd/pool_password
     GSI_DAEMON_DIRECTORY = /etc/grid-security
-    NETWORK_HOSTNAME = schedd.{{ .Release.Namespace }}.svc.cluster.local
+    NETWORK_HOSTNAME = {{ .Values.schedd.hostname }}
     QUEUE_SUPER_USER_MAY_IMPERSONATE = .*
     QUEUE_SUPER_USERS = condor, *@users.htcondor.org
     QUEUE_ALL_USERS_TRUSTED = True
