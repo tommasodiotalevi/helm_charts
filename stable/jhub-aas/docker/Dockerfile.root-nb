@@ -34,4 +34,4 @@ USER jovyan
 WORKDIR /home/jovyan/
 ENV HOME=/home/jovyan
 
-RUN mkdir -p /home/jovyan/.local/share/jupyter/kernels/ && cp -r /opt/conda/etc/notebook/kernels/root /home/jovyan/.local/shareRUN mkdir -p /home/jovyan/.local/share/jupyter/kernels/ && cp -r /opt/conda/etc/notebook/kernels/root /home/jovyan/.local/shareRUN mkdir -p /home/jovyan/.local/share/jupyter/kernels/ && cp -r /opt/conda/etc/notebook/kernels/root /home/jovyan/.local/share/jupyter/kernels/
+RUN mkdir -p /home/jovyan/.local/share/jupyter/kernels/ && cp -r /opt/conda/etc/notebook/kernels/root /home/jovyan/.local/share/jupyter/kernels/
