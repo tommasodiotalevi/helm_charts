@@ -4,6 +4,8 @@ FROM jupyterhub/k8s-hub:0.11.1
 
 USER root
 
+RUN pip3 install pyjwt
+
 RUN apt-get update
 
 # Install required apt packages for all the extensions
