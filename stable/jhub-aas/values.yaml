@@ -218,6 +218,7 @@ jupyterhub:
         #c.JupyterHub.authenticator_class = GitHubEnvAuthenticator
         c.JupyterHub.authenticator_class = EnvAuthenticator
         c.GenericOAuthenticator.oauth_callback_url = callback
+        c.GenericOAuthenticator.scope = ["address", "openid", "email", "profile", "offline_access"]
 
         # PUT IN SECRET
         c.GenericOAuthenticator.client_id = client_id
