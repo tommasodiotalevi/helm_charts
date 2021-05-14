@@ -108,7 +108,7 @@ jupyterhub:
 
         myenv = os.environ.copy()
 
-        #c.Spawner.default_url = '/lab'
+        c.Spawner.default_url = '/lab'
 
         cache_file = './iam_secret'
 
