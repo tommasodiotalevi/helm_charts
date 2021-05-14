@@ -51,7 +51,7 @@ jupyterhub:
   hub:
     image:
       name: ghcr.io/dodas-ts/jhub
-      tag: 'e0c6db9523c6141522223ed128c093edb03b4ebe'
+      tag: 'v4.0.0'
     cookieSecret: 72077073d819ce7a118a7dd7e2ce3eb74328cd306faa0540b1045d56113fdd0e
     #<PUT HERE A RANDOM TOKEN openssl rand -hex 32>
     networkPolicy:
