@@ -3,7 +3,7 @@ name: docker-jhub
 on:
   push:
     tags: 
-    - "*"
+    - "*-jhub"
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
