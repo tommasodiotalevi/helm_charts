@@ -1,0 +1,37 @@
+FROM jupyter/scipy-notebook:ubuntu-20.04
+
+USER root
+
+RUN conda install root -c conda-forge
+
+# set up NanoAOD-tools
+RUN git clone https://github.com/cms-nanoAOD/nanoAOD-tools.git /usr/local/bin/NanoAODTools
+RUN chmod -R 777 /usr/local/bin/NanoAODTools
+ENV PYTHONPATH=/usr/local/lib
+ENV LD_LIBRARY_PATH=/usr/local/lib
+ENV PYTHONPATH=/usr/local/bin/NanoAODTools/build/lib/python:${PYTHONPATH}
+WORKDIR /usr/local/bin/NanoAODTools
+RUN mkdir -p build/lib/python/PhysicsTools && \
+    ln -s ../../../../python build/lib/python/PhysicsTools/NanoAODTools && \
+    find build/lib/python python -type d -execdir touch '{}/__init__.py' \; && \
+    wget https://research.cs.wisc.edu/htcondor/tarball/8.9/8.9.9/release/condor-8.9.9-x86_64_Ubuntu20-stripped.tar.gz && \
+    tar -xzvf condor-8.9.9-x86_64_Ubuntu20-stripped.tar.gz && \
+    sudo mv condor-8.9.9-x86_64_Ubuntu20-stripped/bin/* /usr/bin/ && \
+    sudo mkdir /usr/lib/condor && \
+    sudo mv condor-8.9.9-x86_64_Ubuntu20-stripped/lib/condor/* /usr/lib/condor/ && \
+    sudo mv condor-8.9.9-x86_64_Ubuntu20-stripped/lib/python3/* /usr/lib/python3/ && \
+    sudo rm -r condor-8.9.9-x86_64_Ubuntu20-stripped/lib/condor condor-8.9.9-x86_64_Ubuntu20-stripped/lib/python3 && \
+    sudo mv condor-8.9.9-x86_64_Ubuntu20-stripped/lib/* /usr/lib/ && \
+    sudo mkdir -p /usr/libexec/ && sudo mv condor-8.9.9-x86_64_Ubuntu20-stripped/libexec/* /usr/libexec/ && \
+    sudo mkdir /etc/condor
+COPY ./condor_config /etc/condor/condor_config
+
+# disable CA check for davix root
+RUN echo "Davix.GSI.CACheck: n" >> /usr/local/etc/system.rootrc
+
+#CMD ["/bin/bash", "-x", "/start.sh"]
+USER jovyan
+WORKDIR /home/jovyan/
+ENV HOME=/home/jovyan
+
+RUN mkdir -p /home/jovyan/.local/share/jupyter/kernels/ && cp -r /opt/conda/etc/notebook/kernels/root /home/jovyan/.local/shareRUN mkdir -p /home/jovyan/.local/share/jupyter/kernels/ && cp -r /opt/conda/etc/notebook/kernels/root /home/jovyan/.local/shareRUN mkdir -p /home/jovyan/.local/share/jupyter/kernels/ && cp -r /opt/conda/etc/notebook/kernels/root /home/jovyan/.local/share/jupyter/kernels/
