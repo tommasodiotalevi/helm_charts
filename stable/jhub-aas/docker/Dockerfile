@@ -11,7 +11,7 @@ RUN apt-get update && apt-get -y install vim sudo git curl ca-certificates
 RUN curl -k "https://crt.sh/?d=2475254782" -o /usr/local/share/ca-certificates/ca.crt && \                                      
     update-ca-certificates 
 
-RUN curl -k  https://github.com/DODAS-TS/dodas-apps/raw/master/docs/img/dodas.png -o /etc/logo.png
+RUN curl -k  https://raw.githubusercontent.com/DODAS-TS/dodas-apps/master/logo.png -o /etc/logo.png
 
 RUN echo "jovyan ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
        rm /bin/sh && \
