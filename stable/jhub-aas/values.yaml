@@ -235,8 +235,7 @@ jupyterhub:
         c.GenericOAuthenticator.authorize_url = iam_server.strip('/') + '/authorize'
         c.GenericOAuthenticator.token_url = iam_server.strip('/') + '/token'
         c.GenericOAuthenticator.userdata_url = iam_server.strip('/') + '/userinfo'
-        c.GenericOAuthenticator.scope = ['openid', 'profile', 'email', 'address', 'offline_access']
-        #c.GenericOAuthenticator.scope = ['openid', 'profile', 'email', 'address', 'offline_access', 'wlcg', 'groups']
+        c.GenericOAuthenticator.scope = ['openid', 'profile', 'email', 'address', 'offline_access', 'wlcg', 'wlcg.groups']
         c.GenericOAuthenticator.username_key = "preferred_username"
 
         c.GenericOAuthenticator.enable_auth_state = True
