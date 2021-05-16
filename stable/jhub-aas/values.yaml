@@ -51,7 +51,7 @@ jupyterhub:
   hub:
     image:
       name: ghcr.io/dodas-ts/jhub
-      tag: 'v4.0.0'
+      tag: 'v4.0.1'
     cookieSecret: 72077073d819ce7a118a7dd7e2ce3eb74328cd306faa0540b1045d56113fdd0e
     #<PUT HERE A RANDOM TOKEN openssl rand -hex 32>
     networkPolicy:
@@ -152,11 +152,14 @@ jupyterhub:
                 spawner.environment['JUPYTERHUB_ACTIVITY_INTERVAL'] = "15"
 
                 amIAllowed = False
-
+                
+                import jwt
+                groups = jwt.decode(auth_state["access_token"], options={"verify_signature": False, "verify_aud": False})["wlcg.groups"]
+                
                 if os.environ.get("OAUTH_GROUPS"):
-                    spawner.environment['GROUPS'] = " ".join(auth_state['oauth_user']['groups'])
+                    spawner.environment['GROUPS'] = " ".join(groups)
                     allowed_groups = os.environ["OAUTH_GROUPS"].split(" ")
-                    self.log.info(auth_state['oauth_user']['groups'])
+                    self.log.info(groups)
                     for gr in allowed_groups:
                         if gr in auth_state['oauth_user']['groups']:
                             amIAllowed = True
@@ -200,10 +203,17 @@ jupyterhub:
                         return
 
                 auth_state = self._create_auth_state(token_resp_json, user_data_resp_json)
-
+                import pprint
+                pprint.pprint(auth_state)
+                
+                import jwt
+                groups = jwt.decode(auth_state["access_token"], options={"verify_signature": False, "verify_aud": False})["wlcg.groups"]
+                
+                pprint.pprint(groups)
+                
                 is_admin = False
-                if os.environ.get("ADMIN_OAUTH_GROUPS") in auth_state['oauth_user']['groups']:
-                    self.log.info("%s : %s is in %s" , (name, os.environ.get("ADMIN_OAUTH_GROUPS"), auth_state['oauth_user']['groups']))
+                if os.environ.get("ADMIN_OAUTH_GROUPS") in groups:
+                    self.log.info("%s : %s is in %s" , (name, os.environ.get("ADMIN_OAUTH_GROUPS"), groups))
                     is_admin = True
                 else:
                     self.log.info(" %s is not in admin group ", name)
@@ -315,6 +325,8 @@ jupyterhub:
         c.KubeSpawner.start_timeout = 600
 
         c.JupyterHub.hub_connect_ip = 'hub.default.svc.cluster.local'
+
+        c.KubeSpawner.notebook_dir = "/opt/workspace"
 
 spark:
   enabled: false

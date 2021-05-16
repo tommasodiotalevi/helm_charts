@@ -6,21 +6,16 @@ USER root
 
 RUN pip3 install pyjwt
 
-RUN apt-get update
-
-# Install required apt packages for all the extensions
-RUN apt-get -y install vim sudo git curl ca-certificates
+RUN apt-get update && apt-get -y install vim sudo git curl ca-certificates
 
 RUN curl -k "https://crt.sh/?d=2475254782" -o /usr/local/share/ca-certificates/ca.crt && \                                      
     update-ca-certificates 
 
-RUN curl -k https://baltig.infn.it/infn-cloud/web-site/-/raw/master/imgs/INFN_Cloud/Sito/selezione_sito_cloud/INFN_Cloud_logo_home.png -o /etc/logo.png
+RUN curl -k  https://github.com/DODAS-TS/dodas-apps/raw/master/docs/img/dodas.png -o /etc/logo.png
 
-RUN echo "jovyan ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-
-# Use bash instead of dash
-RUN rm /bin/sh && \
-    ln -s /bin/bash /bin/sh
+RUN echo "jovyan ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
+       rm /bin/sh && \
+       ln -s /bin/bash /bin/sh
 
 USER $NB_UID
 
