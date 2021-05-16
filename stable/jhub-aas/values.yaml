@@ -161,7 +161,7 @@ jupyterhub:
                     allowed_groups = os.environ["OAUTH_GROUPS"].split(" ")
                     self.log.info(groups)
                     for gr in allowed_groups:
-                        if gr in auth_state['oauth_user']['groups']:
+                        if gr in groups:
                             amIAllowed = True
                 else:
                     amIAllowed = True
