@@ -1,3 +1,4 @@
+ARG  NOTEBOOK_VERSION
 FROM ghcr.io/dodas-ts/notebook:${NOTEBOOK_VERSION}-base
 
 USER root
