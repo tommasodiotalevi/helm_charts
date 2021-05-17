@@ -3,6 +3,7 @@ FROM jupyter/scipy-notebook:ubuntu-20.04
 ARG JUPYTER_ROOT=/opt/workspace
 
 USER root
+ENV HOME /root
 
 RUN mkdir -p /root/.init
 
