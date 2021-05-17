@@ -3,6 +3,8 @@ FROM ghcr.io/dodas-ts/notebook:${NOTEBOOK_VERSION}-htc
 
 USER root
 
+WORKDIR /tmp
+
 RUN conda install root -c conda-forge
 
 # set up NanoAOD-tools
@@ -21,3 +23,5 @@ RUN mkdir -p build/lib/python/PhysicsTools && \
 RUN echo "Davix.GSI.CACheck: n" >> /usr/local/etc/system.rootrc
 
 RUN mkdir -p /root/.local/share/jupyter/kernels/ && cp -r /opt/conda/etc/notebook/kernels/root /root/.local/share/jupyter/kernels/
+
+WORKDIR /opt/workspace

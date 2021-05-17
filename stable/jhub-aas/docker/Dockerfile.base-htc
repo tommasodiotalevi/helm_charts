@@ -3,6 +3,8 @@ FROM ghcr.io/dodas-ts/notebook:${NOTEBOOK_VERSION}-base
 
 USER root
 
+WORKDIR /tmp
+
 RUN  wget https://research.cs.wisc.edu/htcondor/tarball/8.9/8.9.9/release/condor-8.9.9-x86_64_Ubuntu20-stripped.tar.gz && \
     tar -xzvf condor-8.9.9-x86_64_Ubuntu20-stripped.tar.gz && \
     sudo mv condor-8.9.9-x86_64_Ubuntu20-stripped/bin/* /usr/bin/ && \
@@ -15,3 +17,5 @@ RUN  wget https://research.cs.wisc.edu/htcondor/tarball/8.9/8.9.9/release/condor
     sudo mkdir /etc/condor
 
 COPY ./condor_config /etc/condor/condor_config
+
+WORKDIR /opt/workspace
