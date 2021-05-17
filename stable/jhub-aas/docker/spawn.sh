@@ -11,3 +11,5 @@ oidc-gen dodas --issuer $IAM_SERVER \
                --scope "openid profile email" \
                --redirect-uri  http://localhost:8843 \
                --pw-cmd "echo \"DUMMY PWD\""
+
+while true; do oidc-token dodas --time 1200 > /tmp/token; sleep 600; done &
