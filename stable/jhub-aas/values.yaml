@@ -253,8 +253,9 @@ jupyterhub:
                 <label for="stack">Select your desired image:</label>
           <input list="images" name="img">
           <datalist id="images">
-            <option value="dodasts/persistent-storage-base:v2">Notebook base</option>
-            <option value="dodasts/htcondor_notebook:latest">Notebook with HTCondor</option>
+            <option value="ghcr.io/dodas-ts/notebook:v4.0.2-pre7-base">Notebook base</option>
+            <option value="ghcr.io/dodas-ts/notebook:v4.0.2-pre7-htc">Notebook with HTCondor</option>
+            <option value="ghcr.io/dodas-ts/notebook:v4.0.2-pre7-htc-root">Notebook with HTCondor and ROOT</option>
           </datalist>
         <br>
                 <label for="cpu">Select your desired number of cores:</label>
