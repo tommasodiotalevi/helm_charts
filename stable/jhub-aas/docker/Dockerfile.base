@@ -1,6 +1,6 @@
 FROM jupyter/scipy-notebook:ubuntu-20.04
 
-ARG JUPYTER_ROOT=/opt/workarea
+ARG JUPYTER_ROOT=/opt/workspace
 
 USER root
 

@@ -15,7 +15,3 @@ RUN  wget https://research.cs.wisc.edu/htcondor/tarball/8.9/8.9.9/release/condor
     sudo mkdir /etc/condor
 
 COPY ./condor_config /etc/condor/condor_config
-
-USER jovyan
-WORKDIR /home/jovyan/
-ENV HOME=/home/jovyan
