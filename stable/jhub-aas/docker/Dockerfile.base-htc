@@ -1,0 +1,20 @@
+FROM ghcr.io/dodas-ts/notebook:${NOTEBOOK_VERSION}-base
+
+USER root
+
+RUN  wget https://research.cs.wisc.edu/htcondor/tarball/8.9/8.9.9/release/condor-8.9.9-x86_64_Ubuntu20-stripped.tar.gz && \
+    tar -xzvf condor-8.9.9-x86_64_Ubuntu20-stripped.tar.gz && \
+    sudo mv condor-8.9.9-x86_64_Ubuntu20-stripped/bin/* /usr/bin/ && \
+    sudo mkdir /usr/lib/condor && \
+    sudo mv condor-8.9.9-x86_64_Ubuntu20-stripped/lib/condor/* /usr/lib/condor/ && \
+    sudo mv condor-8.9.9-x86_64_Ubuntu20-stripped/lib/python3/* /usr/lib/python3/ && \
+    sudo rm -r condor-8.9.9-x86_64_Ubuntu20-stripped/lib/condor condor-8.9.9-x86_64_Ubuntu20-stripped/lib/python3 && \
+    sudo mv condor-8.9.9-x86_64_Ubuntu20-stripped/lib/* /usr/lib/ && \
+    sudo mkdir -p /usr/libexec/ && sudo mv condor-8.9.9-x86_64_Ubuntu20-stripped/libexec/* /usr/libexec/ && \
+    sudo mkdir /etc/condor
+
+COPY ./condor_config /etc/condor/condor_config
+
+USER jovyan
+WORKDIR /home/jovyan/
+ENV HOME=/home/jovyan

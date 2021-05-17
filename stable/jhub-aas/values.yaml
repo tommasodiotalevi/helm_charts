@@ -297,9 +297,8 @@ jupyterhub:
                 return options
 
         c.JupyterHub.spawner_class = CustomSpawner
-        #spawn_cmd = os.environ.get("jupyterhub-labhub --port 8888 --ip 0.0.0.0 --allow-root --debug")
 
-        #c.KubeSpawner.cmd = spawn_cmd
+        c.KubeSpawner.cmd = ["/usr/local/bin/jupyterhub-singleuser"]
         c.KubeSpawner.args = ["--allow-root"]
         c.KubeSpawner.privileged = True
 

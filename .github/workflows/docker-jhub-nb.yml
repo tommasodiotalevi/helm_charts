@@ -3,7 +3,7 @@ name: docker-notebook-root
 on:
   push:
     tags: 
-    - "*-root-nb"
+    - "*-notebooks"
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
@@ -27,12 +27,33 @@ jobs:
     - name: Get Repo Owner
       id: get_repo_owner
       run: echo ::set-output name=repo_owner::$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')
-    - name: Build container image
+    - name: Save .env for docker build
+      id: get_repo_owner
+      run: echo "NOTEBOOK_VERSION=${{ env.RELEASE_VERSION }}" >  ./stable/jhub-aas/docker/.env
+    - name: Build container base image
       uses: docker/build-push-action@v2
       with: 
         context: ./stable/jhub-aas/docker/
         outputs: "type=registry,push=true"
         tags: |
             ghcr.io/${{ steps.get_repo_owner.outputs.repo_owner }}/notebook:${{ env.RELEASE_VERSION }}
+        file: ./stable/jhub-aas/docker/Dockerfile.base
+        platforms: linux/amd64
+    - name: Build container base+HTC image
+      uses: docker/build-push-action@v2
+      with: 
+        context: ./stable/jhub-aas/docker/
+        outputs: "type=registry,push=true"
+        tags: |
+            ghcr.io/${{ steps.get_repo_owner.outputs.repo_owner }}/notebook:${{ env.RELEASE_VERSION }}-htc
+        file: ./stable/jhub-aas/docker/Dockerfile.base-htc
+        platforms: linux/amd64
+    - name: Build container base+htc+ROOT image
+      uses: docker/build-push-action@v2
+      with: 
+        context: ./stable/jhub-aas/docker/
+        outputs: "type=registry,push=true"
+        tags: |
+            ghcr.io/${{ steps.get_repo_owner.outputs.repo_owner }}/notebook:${{ env.RELEASE_VERSION }}-htc-root
         file: ./stable/jhub-aas/docker/Dockerfile.root-nb
         platforms: linux/amd64
