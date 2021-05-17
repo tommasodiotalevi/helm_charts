@@ -9,7 +9,7 @@ RUN mkdir -p /root/.init
 COPY ./jupyterhub-singleuser /usr/local/bin/jupyterhub-singleuser
 COPY ./spawn.sh /root/.init/spawn.sh
 
-RUN chmod +x /root/.init/spawn.sh
+RUN chmod +x /usr/local/bin/jupyterhub-singleuser && chmod +x /root/.init/spawn.sh
 
 RUN   apt-get update \
     && apt-get install -y  gnupg2 software-properties-common
