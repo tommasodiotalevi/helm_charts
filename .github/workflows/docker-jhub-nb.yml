@@ -3,7 +3,7 @@ name: docker-notebook-root
 on:
   push:
     tags: 
-    - "*-notebooks"
+    - "*"
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
