@@ -308,7 +308,11 @@ jupyterhub:
               
         c.KubeSpawner.environment = {
           "_condor_COLLECTOR_HOST": os.environ["HTCONDOR_COLLECTOR_URL"],
-          "_condor_SCHEDD_HOST": os.environ["HTCONDOR_SCHEDD_NAME"]
+          "_condor_SCHEDD_HOST": os.environ["HTCONDOR_SCHEDD_NAME"],
+          "_condor_AUTH_SSL_CLIENT_CAFILE": "/ca.crt",
+          "_condor_SEC_DEFAULT_AUTHENTICATION_METHODS": "SCITOKENS",
+          "_condor_SCITOKENS_FILE": "/tmp/token",
+          "_condot_TOOL_DEBUG": "D_FULLDEBUG,D_SECURITY"
         }
 
         c.KubeSpawner.extra_container_config = {
