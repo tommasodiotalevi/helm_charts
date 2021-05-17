@@ -33,7 +33,7 @@ jobs:
         context: ./stable/jhub-aas/docker/
         outputs: "type=registry,push=true"
         tags: |
-            ghcr.io/${{ steps.get_repo_owner.outputs.repo_owner }}/notebook:${{ env.RELEASE_VERSION }}
+            ghcr.io/${{ steps.get_repo_owner.outputs.repo_owner }}/notebook:${{ env.RELEASE_VERSION }}-base
         file: ./stable/jhub-aas/docker/Dockerfile.base
         platforms: linux/amd64
     - name: Build container base+HTC image
