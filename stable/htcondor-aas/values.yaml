@@ -8,7 +8,7 @@ cluster:
 schedd: 
   enabled: true
   mapfile: |
-    SCITOKENS https:\/\/dodas-iam.cloud.cnaf.infn.it,(.*) \1@users.htcondor.org
+    SCITOKENS https:\/\/dodas-iam.cloud.cnaf.infn.it\/,(.*) \1@users.htcondor.org
     PASSWORD (*.) condor
     GSI (.*) anonymous
   extraconfig: ""
