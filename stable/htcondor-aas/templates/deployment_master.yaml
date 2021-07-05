@@ -5,6 +5,8 @@ metadata:
   name: ccb-pod
   labels:
     app.kubernetes.io/name: master
+  annotations:
+    secret.reloader.stakater.com/reload: "ccbconfigd,mapfile"
 spec:
   template:
     metadata:
@@ -61,5 +63,7 @@ spec:
   
 
   replicas: 1
+  strategy:
+    type: Recreate
 
 {{- end }}

@@ -5,6 +5,8 @@ metadata:
   name: schedd-pod
   labels:
     app.kubernetes.io/name: schedd
+  annotations:
+    secret.reloader.stakater.com/reload: "scheddconfigd,mapfile"
 spec:
   template:
     metadata:
@@ -73,5 +75,6 @@ spec:
       app.kubernetes.io/name: schedd
 
   replicas: 1
-
+  strategy:
+    type: Recreate
 {{- end }}

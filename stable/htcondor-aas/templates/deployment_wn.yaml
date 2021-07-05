@@ -4,6 +4,8 @@ metadata:
   name: wn-pod
   labels:
     app.kubernetes.io/name: wn
+  annotations:
+    secret.reloader.stakater.com/reload: "wnconfigd,mapfile"
 spec:
 
   template:
@@ -171,3 +173,5 @@ spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.wn.replicas}}
   {{- end }}
+  strategy:
+    type: Recreate
