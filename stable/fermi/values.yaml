@@ -8,7 +8,7 @@ htcondor:
 
   schedd: 
     mapfile: |
-      SCITOKENS https://dodas-iam.cloud.cnaf.infn.it/ dodas@users.htcondor.org
+      SCITOKENS https:\/\/dodas-iam.cloud.cnaf.infn.it\/,(.*) \1@users.htcondor.org
       PASSWORD (*.) condor
       GSI (.*) anonymous
     extraconfig: ""
@@ -49,8 +49,8 @@ htcondor:
   wn:
     replicas: 1
     image:
-      name:  ttedesch/htcondor-execute
-      tag:  "root-tokensv2"
+      name:  dodasts/execute
+      tag:  "8.9.9-el7-fermi"
       pullPolicy: IfNotPresent
     # Condor slot type
     slotType: cpus=1, mem=2000
@@ -103,7 +103,8 @@ htcondor:
     # e.g. classAds
     # MachineOwner = "chemistry"
     # STARTD_ATTRS = $(STARTD_ATTRS) MachineOwner
-      # ConfigMap site-Local
+    
+    # ConfigMap site-Local
     siteConfCMS:
       enabled: false
       numCPUS: 1
@@ -146,9 +147,9 @@ htcondor:
 
   # CVMFS mount on slave: configuration
   cvmfs:
-    enabled: false
+    enabled: true
     image: dodasts/cvmfs
-    tag: latest
+    tag: v1.4-reloaded
     pullPolicy: IfNotPresent
 
     # List of repos to be mounted
@@ -157,7 +158,7 @@ htcondor:
     privKey: 
       - name: fermi
         filename: fermi.local.repo.pub
-        path: \"keys\"
+        path: keys
         content: | 
           -----BEGIN PUBLIC KEY-----
           CHANGEME
@@ -168,7 +169,9 @@ htcondor:
           CVMFS_SERVER_URL=http://193.204.89.114/cvmfs/fermi.local.repo
           CVMFS_PUBLIC_KEY=/etc/cvmfs/keys/fermi.local.repo.pub
           CVMFS_HTTP_PROXY=DIRECT
+  
   ttsCache:
+    enabled: false
     image: dodasts/tts-cache
     tag: v0.1.3-k8s-12
     iamToken: 

@@ -114,7 +114,7 @@ spec:
             - name: socket-dir
               mountPath: /csi
         - name: rclone
-          image: wunderio/csi-rclone:v1.2.6
+          image: dodasts/csi-rclone:v1.55.1
           args :
             - "--nodeid=$(NODE_ID)"
             - "--endpoint=$(CSI_ENDPOINT)"

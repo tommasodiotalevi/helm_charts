@@ -8,7 +8,7 @@ htcondor:
 
   schedd: 
     mapfile: |
-      SCITOKENS https://dodas-iam.cloud.cnaf.infn.it/ dodas@users.htcondor.org
+      SCITOKENS https:\/\/dodas-iam.cloud.cnaf.infn.it\/,(.*) \1@users.htcondor.org
       PASSWORD (*.) condor
       GSI (.*) anonymous
     extraconfig: ""
@@ -49,8 +49,8 @@ htcondor:
   wn:
     replicas: 1
     image:
-      name:  dodasts/htcondor
-      tag:  "v0.1.0-k8s-ams "
+      name:  dodasts/execute
+      tag:  "8.9.9-el7-ams"
       pullPolicy: IfNotPresent
     # Condor slot type
     slotType: cpus=1, mem=2000
@@ -116,15 +116,15 @@ htcondor:
   cvmfs:
     enabled: true
     image: dodasts/cvmfs
-    tag: latest
+    tag: v1.4-reloaded
     pullPolicy: IfNotPresent
 
     # List of repos to be mounted
-    repoList: cms.cern.ch  grid.cern.ch  oasis.cern.ch  singularity.opensciencegrid.org 
+    repoList: ams.cern.ch  ams.local.repo sft.cern.ch 
     privKey: 
       - name: ams
         filename: ams.local.repo.pub
-        path: \"keys/ams.local.repo\"
+        path: keys/ams.local.repo
         content: | 
           -----BEGIN PUBLIC KEY-----
               <CHANGEME>
@@ -132,7 +132,7 @@ htcondor:
     defaultLocalConfig:
       - file: ams.local.repo.conf
         content: |
-          CVMFS_SERVER_URL=http://<CHANGEME>/cvmfs/ams.local.repo
+          CVMFS_SERVER_URL=http://193.204.89.114/cvmfs/ams.local.repo
           CVMFS_PUBLIC_KEY=/etc/cvmfs/keys/ams.local.repo/ams.local.repo.pub
           CVMFS_HTTP_PROXY=DIRECT
           CVMFS_DEBUGFILE=/tmp/cvmfs_ams_local.log
@@ -148,6 +148,7 @@ htcondor:
           CVMFS_DEBUGFILE=/tmp/cvmfs_sft.log
 
   ttsCache:
+    enabled: false
     image: dodasts/tts-cache
     tag: v0.1.3-k8s-12
     iamToken: 
