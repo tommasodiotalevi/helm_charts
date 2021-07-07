@@ -127,7 +127,13 @@ htcondor:
         path: keys/ams.local.repo
         content: | 
           -----BEGIN PUBLIC KEY-----
-              <CHANGEME>
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzJZKC36sJXInkyUUdyu1
+          bCMwbqkLwXwxuqd/nOF/7Va1PQD2HQfI8vCjH9gDDTA92sm7/CQtaPnREXcWjnqp
+          ydAahkS09sKZu7MGFCgLRA5mAalmbbFUwSCkOF+DLswlesQxw9X774zFOvD/Akh+
+          AB02BIESBgQPaMOmbYc92Iwdcz5U7sALtt9Hu43Vsu+mn2U8QbKUlt9rB6/mnNaS
+          skQSUbNbhKs6CFp5b4X8Xwq3ATusBjjB35DezjkDsICWVtJ3Jm27aXxNA1lq2xZW
+          E6wkpyrAjTTTlj21mj++Njbo2SEyTSzfWQR3gi9UM/RI3b5sVkX/tzNNyb+gmS/c
+          VwIDAQAB
           -----END PUBLIC KEY-----
     defaultLocalConfig:
       - file: ams.local.repo.conf
