@@ -6,7 +6,7 @@ metadata:
   labels:
     app.kubernetes.io/name: schedd
   annotations:
-    secret.reloader.stakater.com/reload: "scheddconfigd,mapfile"
+    configmap.reloader.stakater.com/reload: "scheddconfigd,mapfile"
 spec:
   template:
     metadata:
