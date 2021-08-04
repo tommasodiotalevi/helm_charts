@@ -1,5 +1,6 @@
 htcondor:
   ttsCache:
+    enabled: true
     image: dodasts/tts-cache
     tag: v0.1.3-k8s-12
     iamToken: TOKEN_DUMMY
@@ -8,10 +9,6 @@ htcondor:
   schedd:
     enabled: false
   master:
-    publicIP: <COLLECTOR PUBLIC IP>
-    hostname: <COLLECTOR HOST>
-    service:
-      nodePort: 9618
     enabled: false
   squid:
     enabled: true

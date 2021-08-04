@@ -141,6 +141,7 @@ cvmfs:
   #        property.2=value-2
 
 ttsCache:
+  enabled: false
   image: dodasts/tts-cache
   tag: v0.1.3-k8s-12
   iamToken: 

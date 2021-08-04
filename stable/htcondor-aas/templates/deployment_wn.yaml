@@ -147,7 +147,7 @@ spec:
       {{- if .Values.cvmfs.enabled }}
       - name: cvmfs
         hostPath:
-          path: /cvmfs
+          path: /cvmfs-{{ .Release.Namespace }}-{{ .Release.Name }}
           type: Directory
       {{- end }}
       {{- if .Values.wn.persistentVolume.pvc.name  }}
