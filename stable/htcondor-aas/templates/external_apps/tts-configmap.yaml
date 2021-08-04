@@ -11,4 +11,5 @@ data:
       token: {{ .Values.ttsCache.iamToken }}
       endpoint: {{ .Values.ttsCache.proxyIAMEndpoint }}/token
       credentials:  {{ .Values.ttsCache.proxyCredentialEndpoint }}
+    namespace: {{ .Release.Namespace }}
 {{- end }}

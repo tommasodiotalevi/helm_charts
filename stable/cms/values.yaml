@@ -1,8 +1,8 @@
 htcondor:
   ttsCache:
     enabled: true
-    image: dodasts/tts-cache
-    tag: v0.1.3-k8s-12
+    image: ghcr.io/dodas-ts/tts-cache
+    tag: v1.0.1
     iamToken: TOKEN_DUMMY
     iamClientId: ID_DUMMY
     iamClientSecret: SECRET_DUMMY
