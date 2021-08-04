@@ -12,23 +12,21 @@ htcondor:
     enabled: false
   squid:
     enabled: true
+    image: dodasts/squid
+    tag: v1.1.2-dodas
   cvmfs:
     enabled: true 
     image: dodasts/cvmfs
-    tag: latest
+    tag: v1.4-reloaded
     pullPolicy: IfNotPresent
     replicas: 1
     # # List of repos to be mounted
-    repoList: cms.cern.ch  grid.cern.ch  oasis.cern.ch  singularity.opensciencegrid.org
+    repoList: cms.cern.ch  grid.cern.ch
     defaultLocalConfig:
       - file: cms.cern.ch.conf
         content: |
           export CMS_LOCAL_SITE=/etc/cvmfs/SITECONF
           CVMFS_HTTP_PROXY=http://localhost:3128
-      - file: oasis.cern.ch.conf
-        content: \"CVMFS_HTTP_PROXY=http://localhost:3128\"
-      - file: singularity.opensciencegrid.org.conf
-        content: \"CVMFS_HTTP_PROXY=http://localhost:3128\"
       - file: grid.cern.ch.conf
         content: \"CVMFS_HTTP_PROXY=http://localhost:3128\"
   wn:
