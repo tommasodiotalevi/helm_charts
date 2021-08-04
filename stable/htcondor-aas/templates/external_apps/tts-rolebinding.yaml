@@ -2,12 +2,12 @@
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: tts-role-binding
+  name: tts-role-binding-{{ .Release.Namespace}}
 subjects:
   - kind: ServiceAccount
-    name: tts-account
+    name: tts-account-{{ .Release.Namespace}}
 roleRef:
   kind: Role
-  name: tts-role
+  name: tts-role-{{ .Release.Namespace}}
   apiGroup: rbac.authorization.k8s.io
 {{- end }}
