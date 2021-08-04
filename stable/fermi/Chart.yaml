@@ -2,7 +2,7 @@ annotations:
   category: stable
 apiVersion: v1
 name: Fermi-experiment
-version: 1.0.3
+version: 1.0.4
 appVersion: 8.9.9
 description: HTCondor pool for Fermi experiment
 keywords:
