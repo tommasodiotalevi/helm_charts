@@ -1,3 +1,4 @@
+{{- if or .Values.master.enabled .Values.schedd.enabled }}
 apiVersion: v1
 kind: Secret
 metadata:
@@ -112,3 +113,5 @@ spec:
     kind: Issuer
     #name: letsencrypt-staging
     #kind: ClusterIssuer
+
+{{- end }}
