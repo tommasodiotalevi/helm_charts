@@ -41,7 +41,7 @@ spec:
         {{- end }}
       #hostNetwork: true
       {{- if .Values.ttsCache.enabled }}
-      serviceAccountName: tts-account
+      serviceAccountName: tts-account-{{ .Release.Namespace}}
       {{- end }}
       containers:
       {{- if .Values.squid.enabled }}
