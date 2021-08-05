@@ -109,7 +109,7 @@ spec:
           {{- if not .Values.ttsCache.enabled }}
           - mountPath: "/etc/condor/config.d"
             name: configd
-          {{ - end }}
+          {{- end }}
           - name: clustersecret
             mountPath: /etc/pwd
           - name: mapfile
