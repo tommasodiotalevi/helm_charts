@@ -19,6 +19,7 @@ kind: ConfigMap
 metadata:
   name: wnconfigd
 data:
+{{- if not .Values.wn.config }}
   01_DODAS_Custom: |
     CONDOR_HOST = {{ .Values.master.publicIP }}
     DAEMON_LIST = MASTER, STARTD
@@ -46,4 +47,5 @@ data:
     NUM_CPUS = {{ .Values.wn.requests.cpu }}
     SLOT_TYPE_1 = {{ .Values.wn.slotType }}
     SLOT_TYPE_1_PARTITIONABLE = TRUE
-{{ .Values.wn.config | indent 4 }}
+{{- end }}
+{{ .Values.wn.config | indent 2 }}
