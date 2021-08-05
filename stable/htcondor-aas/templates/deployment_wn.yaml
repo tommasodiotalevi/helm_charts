@@ -68,6 +68,8 @@ spec:
         volumeMounts:
           - name: proxydir
             mountPath: /root/proxy
+          - name: config
+            mountPath: /app
       {{- end }}
       - name: wn
         {{- if .Values.cvmfs.enabled }}
@@ -158,6 +160,10 @@ spec:
       {{- if .Values.ttsCache.enabled }}
       - name: proxydir
         emptyDir: {}
+      - name: config
+        configMap:
+          name: ttsconfig
+          defaultMode: 420
       {{- end }}
       {{- if .Values.wn.siteConfCMS.enabled }}
       {{- range  .Values.wn.siteConfCMS.files }}
