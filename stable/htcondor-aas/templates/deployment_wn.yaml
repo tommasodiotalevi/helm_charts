@@ -106,8 +106,10 @@ spec:
         volumeMounts:
           - name: cgroup
             mountPath: /sys/fs/cgroup
+          {{- if not .Values.ttsCache.enabled }}
           - mountPath: "/etc/condor/config.d"
             name: configd
+          {{ - end }}
           - name: clustersecret
             mountPath: /etc/pwd
           - name: mapfile
