@@ -1,1 +1,0 @@
-{{ .Values.jupyterhub.hub.extraConfig }}
