@@ -24,7 +24,7 @@ daskssh:
   image:
     pullPolicy: Always
     name: dodasts/dask-ssh-forwarder
-    tag: v0.0.2
+    tag: v0.0.7
   nodePort: 31022
   requests: 
     cpu: 900m

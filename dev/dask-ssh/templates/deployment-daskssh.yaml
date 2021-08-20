@@ -23,6 +23,21 @@ spec:
         imagePullPolicy: {{ .Values.redis.image.pullPolicy }}
         image: "{{ .Values.redis.image.name }}:{{ .Values.redis.image.tag }}"
         volumeMounts: []
+      - name: daskssh 
+        resources:
+          requests:
+            memory: {{ .Values.daskssh.requests.memory }}
+            cpu: {{ .Values.daskssh.requests.cpu }}
+          limits:
+            memory: {{ .Values.daskssh.limits.memory }}
+            cpu: {{ .Values.daskssh.limits.cpu }}
+        imagePullPolicy: {{ .Values.daskssh.image.pullPolicy }}
+        image: "{{ .Values.daskssh.image.name }}:{{ .Values.daskssh.image.tag | default .Chart.AppVersion }}"
+        lifecycle:
+          postStart:
+            exec:
+              command:
+              - ssh-dask-post-start.py
       - name: traefik
         # -v $PWD/traefik.yml:/etc/traefik/traefik.yml
         resources:
@@ -39,16 +54,6 @@ spec:
             mountPath: /etc/certs
           - name: traefikconfig
             mountPath: /etc/traefik/
-      - name: daskssh 
-        resources:
-          requests:
-            memory: {{ .Values.daskssh.requests.memory }}
-            cpu: {{ .Values.daskssh.requests.cpu }}
-          limits:
-            memory: {{ .Values.daskssh.limits.memory }}
-            cpu: {{ .Values.daskssh.limits.cpu }}
-        imagePullPolicy: {{ .Values.daskssh.image.pullPolicy }}
-        image: "{{ .Values.daskssh.image.name }}:{{ .Values.daskssh.image.tag | default .Chart.AppVersion }}"
       volumes:
       - name: hostcerts
         secret:
