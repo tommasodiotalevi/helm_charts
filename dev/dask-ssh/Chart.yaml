@@ -1,0 +1,14 @@
+annotations:
+  category: stable
+apiVersion: v1
+name: daskssh 
+version: 0.0.1
+appVersion: 0.0.1
+description: daskssh forwarding service 
+keywords:
+- Dask
+- DODAS
+icon: https://dask.org/_images/dask_horizontal_white_no_pad_dark_bg.png
+maintainers:
+- name: dciangot
+  email: diego.ciangottini@pg.infn.it

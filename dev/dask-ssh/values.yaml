@@ -1,0 +1,34 @@
+redis:
+  image: 
+    pullPolicy: IfNotPresent
+    name: redis
+    tag: 6.2.5
+  requests: 
+    cpu: 900m
+    memory: 900MBi
+  limits:
+    cpu: 1
+    memory: 1GBi
+traefik:
+  image:
+    pullPolicy: IfNotPresent
+    name: traefik
+    tag: v2.5.0
+  requests: 
+    cpu: 900m
+    memory: 900MBi
+  limits:
+    cpu: 1
+    memory: 1GBi
+daskssh:
+  image:
+    pullPolicy: Always
+    name: dodasts/dask-ssh-forwarder
+    tag: v0.0.2
+  nodePort: 31022
+  requests: 
+    cpu: 900m
+    memory: 900MBi
+  limits:
+    cpu: 1
+    memory: 1GBi

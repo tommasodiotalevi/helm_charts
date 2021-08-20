@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: daskssh
+  labels:
+    app.kubernetes.io/name: daskssh
+spec:
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: daskssh 
+    spec:
+      priorityClassName: system-node-critical
+      containers:
+      - name: redis 
+        resources:
+          requests:
+            memory: {{ .Values.redis.requests.memory }}
+            cpu: {{ .Values.redis.requests.cpu }}
+          limits:
+            memory: {{ .Values.redis.limits.memory }}
+            cpu: {{ .Values.redis.limits.cpu }}
+        imagePullPolicy: {{ .Values.redis.image.pullPolicy }}
+        image: "{{ .Values.redis.image.name }}:{{ .Values.redis.image.tag }}"
+        volumeMounts: []
+      - name: traefik
+        # -v $PWD/traefik.yml:/etc/traefik/traefik.yml
+        resources:
+          requests:
+            memory: {{ .Values.traefik.requests.memory }}
+            cpu: {{ .Values.traefik.requests.cpu }}
+          limits:
+            memory: {{ .Values.traefik.limits.memory }}
+            cpu: {{ .Values.redis.limits.cpu }}
+        imagePullPolicy: {{ .Values.traefik.image.pullPolicy }}
+        image: "{{ .Values.traefik.image.name }}:{{ .Values.traefik.image.tag }}"
+        volumeMounts:
+          - name: hostcerts
+            mountPath: /etc/certs
+      - name: daskssh 
+        resources:
+          requests:
+            memory: {{ .Values.daskssh.requests.memory }}
+            cpu: {{ .Values.daskssh.requests.cpu }}
+          limits:
+            memory: {{ .Values.daskssh.limits.memory }}
+            cpu: {{ .Values.daskssh.limits.cpu }}
+        imagePullPolicy: {{ .Values.daskssh.image.pullPolicy }}
+        image: "{{ .Values.daskssh.image.name }}:{{ .Values.daskssh.image.tag | default .Chart.AppVersion }}"
+      volumes:
+      - name: hostcerts
+        secret:
+          secretName: dask-tls
+          defaultMode: 420
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: master
+  
+
+  replicas: 1
+  strategy:
+    type: Recreate

@@ -1,0 +1,13 @@
+apiVersion: v1 
+kind: Service 
+metadata:
+  name: daskssh 
+spec:
+  type: NodePort 
+  ports:
+    - targetPort: 3443 
+      nodePort: {{ .Values.daskssh.nodePort }}
+      protocol: TCP
+      name: daskssh 
+  selector:
+    app.kubernetes.io/name: daskssh 

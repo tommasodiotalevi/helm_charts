@@ -1,0 +1,23 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: dask-tls
+spec:
+  # Secret names are always required.
+  secretName: dask-tls
+  duration: 2160h # 90d
+  renewBefore: 360h # 15d
+  subject:
+    organizations:
+    - infn
+  isCA: False
+  privateKey:
+    algorithm: RSA
+    encoding: PKCS1
+    size: 2048
+  dnsNames:
+  - "*.dask-ssh"
+  #ipAddresses:
+  issuerRef:
+    name: ca-issuer
+    kind: Issuer
