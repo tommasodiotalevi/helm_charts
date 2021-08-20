@@ -5,10 +5,10 @@ redis:
     tag: 6.2.5
   requests: 
     cpu: 900m
-    memory: 900MBi
+    memory: 900M
   limits:
     cpu: 1
-    memory: 1GBi
+    memory: 1G
 traefik:
   image:
     pullPolicy: IfNotPresent
@@ -16,10 +16,10 @@ traefik:
     tag: v2.5.0
   requests: 
     cpu: 900m
-    memory: 900MBi
+    memory: 900M
   limits:
     cpu: 1
-    memory: 1GBi
+    memory: 1G
 daskssh:
   image:
     pullPolicy: Always
@@ -28,7 +28,7 @@ daskssh:
   nodePort: 31022
   requests: 
     cpu: 900m
-    memory: 900MBi
+    memory: 900M
   limits:
     cpu: 1
-    memory: 1GBi
+    memory: 1G

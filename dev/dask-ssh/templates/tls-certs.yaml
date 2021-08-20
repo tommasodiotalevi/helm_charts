@@ -19,5 +19,5 @@ spec:
   - "*.dask-ssh"
   #ipAddresses:
   issuerRef:
-    name: ca-issuer
+    name: dask-ca-issuer
     kind: Issuer

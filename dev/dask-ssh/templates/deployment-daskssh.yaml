@@ -54,7 +54,7 @@ spec:
           defaultMode: 420
   selector:
     matchLabels:
-      app.kubernetes.io/name: master
+      app.kubernetes.io/name: daskssh 
   
 
   replicas: 1

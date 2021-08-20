@@ -5,7 +5,7 @@ metadata:
 spec:
   type: NodePort 
   ports:
-    - targetPort: 8022 
+    - port: 8022 
       nodePort: {{ .Values.daskssh.nodePort }}
       protocol: TCP
       name: daskssh 
