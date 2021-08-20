@@ -37,6 +37,8 @@ spec:
         volumeMounts:
           - name: hostcerts
             mountPath: /etc/certs
+          - name: traefikconfig
+            mountPath: /etc/traefik/
       - name: daskssh 
         resources:
           requests:
@@ -52,6 +54,9 @@ spec:
         secret:
           secretName: dask-tls
           defaultMode: 420
+      - name: traefikconfig
+        configMap:
+          name: traefikconfig
   selector:
     matchLabels:
       app.kubernetes.io/name: daskssh 
