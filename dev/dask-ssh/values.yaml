@@ -9,11 +9,11 @@ redis:
   limits:
     cpu: 1
     memory: 1G
-traefik:
+listener:
   image:
-    pullPolicy: IfNotPresent
-    name: traefik
-    tag: v2.5.0
+    pullPolicy: Always 
+    name: dodasts/dask-ssh-listener 
+    tag: v0.1.1
   requests: 
     cpu: 900m
     memory: 900M
@@ -24,7 +24,7 @@ daskssh:
   image:
     pullPolicy: Always
     name: dodasts/dask-ssh-forwarder
-    tag: v0.0.7
+    tag: v0.1.1
   nodePort: 31022
   requests: 
     cpu: 900m

@@ -33,35 +33,17 @@ spec:
             cpu: {{ .Values.daskssh.limits.cpu }}
         imagePullPolicy: {{ .Values.daskssh.image.pullPolicy }}
         image: "{{ .Values.daskssh.image.name }}:{{ .Values.daskssh.image.tag | default .Chart.AppVersion }}"
-        lifecycle:
-          postStart:
-            exec:
-              command:
-              - ssh-dask-post-start.py
-      - name: traefik
-        # -v $PWD/traefik.yml:/etc/traefik/traefik.yml
+      - name: listener 
         resources:
           requests:
-            memory: {{ .Values.traefik.requests.memory }}
-            cpu: {{ .Values.traefik.requests.cpu }}
+            memory: {{ .Values.listener.requests.memory }}
+            cpu: {{ .Values.listener.requests.cpu }}
           limits:
-            memory: {{ .Values.traefik.limits.memory }}
-            cpu: {{ .Values.redis.limits.cpu }}
-        imagePullPolicy: {{ .Values.traefik.image.pullPolicy }}
-        image: "{{ .Values.traefik.image.name }}:{{ .Values.traefik.image.tag }}"
-        volumeMounts:
-          - name: hostcerts
-            mountPath: /etc/certs
-          - name: traefikconfig
-            mountPath: /etc/traefik/
+            memory: {{ .Values.listener.limits.memory }}
+            cpu: {{ .Values.listener.limits.cpu }}
+        imagePullPolicy: {{ .Values.listener.image.pullPolicy }}
+        image: "{{ .Values.listener.image.name }}:{{ .Values.listener.image.tag }}"
       volumes:
-      - name: hostcerts
-        secret:
-          secretName: dask-tls
-          defaultMode: 420
-      - name: traefikconfig
-        configMap:
-          name: traefikconfig
   selector:
     matchLabels:
       app.kubernetes.io/name: daskssh 
