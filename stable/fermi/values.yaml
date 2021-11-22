@@ -147,28 +147,34 @@ htcondor:
 
   # CVMFS mount on slave: configuration
   cvmfs:
+    defaultLocalConfig:
+      - content: |
+          CVMFS_SERVER_URL=http://193.204.89.114/cvmfs/fermi.local.repo
+          CVMFS_PUBLIC_KEY=/etc/cvmfs/keys/fermi.local.repo/fermi.local.repo.pub
+          CVMFS_HTTP_PROXY=DIRECT
+          CVMFS_DEBUGFILE=/tmp/cvmfs_fermi_local.log
+   
+        file: fermi.local.repo.conf
     enabled: true
     image: dodasts/cvmfs
-    tag: v1.4-reloaded
-    pullPolicy: IfNotPresent
-
-    # List of repos to be mounted
-    repoList: cms.cern.ch  grid.cern.ch  oasis.cern.ch  singularity.opensciencegrid.org 
-
-    privKey: 
-      - name: fermi
-        filename: fermi.local.repo.pub
-        path: keys
-        content: | 
+    privKey:
+      - content: |
           -----BEGIN PUBLIC KEY-----
-          CHANGEME
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5Rezgpvuhl0lyEMFTuKm
+          +J2D5KwjzgNLMEMG6dumKb7Zjohy8dxvhHqqH9USQrF570ug+i5pLHcZB66Z0bBC
+          Ni4IyeTZyEhGo/TGV2XcJZOFX8iR9L6XcbxPOZCNtnyh+UiC6vuwqGYDuh+cLc35
+          TQaqw+zrdmy5SlJNfIh4j4XAt4W9v+BUFNVAoCclCnpw2MiQjKIo+zkHiOaXecPG
+          Nqg+Pmc1jVkjIsarAMtelPG9AZTftRmMpPz71DiqmVylVvBuAwyrOvVtxHUayRZ8
+          VEWSOamqQ87t5rdo50X/5tyH8RDQ/s+jbRwghQN/4MYIrslakCSkwZbbKN4xPS5q
+          0QIDAQAB
           -----END PUBLIC KEY-----
-    defaultLocalConfig:
-      - file: fermi.local.repo.conf
-        content: |
-          CVMFS_SERVER_URL=http://193.204.89.114/cvmfs/fermi.local.repo
-          CVMFS_PUBLIC_KEY=/etc/cvmfs/keys/fermi.local.repo.pub
-          CVMFS_HTTP_PROXY=DIRECT
+     
+        filename: fermi.local.repo.pub
+        name: fermi
+        path: keys/fermi.local.repo
+    pullPolicy: IfNotPresent
+    repoList: fermi.local.repo
+    tag: v1.4-reloaded
   
   ttsCache:
     enabled: false
