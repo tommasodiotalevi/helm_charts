@@ -76,8 +76,9 @@ spec:
         livenessProbe:
           exec:
             command:
-            - ls
-            - /cvmfs/*
+            - bash
+            - -c
+            - "ls /cvmfs/*"
           initialDelaySeconds: 30
           periodSeconds: 30
         {{- end }}

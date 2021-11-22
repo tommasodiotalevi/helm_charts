@@ -3,8 +3,8 @@ annotations:
 apiVersion: v1
 appVersion: "4.11"
 description: A Helm chart for the deployment of a XCache cluster
-name: cachingondemand
-version: 1.0.6
+name: XCache-aaS 
+version: 1.0.7
 icon: https://xrootd.slac.stanford.edu/images/xrootd-logo.png
 maintainers:
   - name: dciangot

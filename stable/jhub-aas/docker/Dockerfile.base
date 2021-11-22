@@ -17,10 +17,43 @@ RUN chmod +x /usr/local/bin/jupyterhub-singleuser && chmod +x /root/.init/spawn.
 RUN   apt-get update \
     && apt-get install -y  gnupg2 software-properties-common
 
-RUN apt-key adv --keyserver hkp://pgp.surfnet.nl --recv-keys ACDFB08FDC962044D87FF00B512839863D487A87 \
-    && add-apt-repository "deb http://repo.data.kit.edu/ubuntu/bionic ./" 
-    
-RUN apt-get install -y oidc-agent
+#RUN apt-key adv --keyserver hkp://pgp.surfnet.nl --recv-keys ACDFB08FDC962044D87FF00B512839863D487A87 \
+#    && add-apt-repository "deb http://repo.data.kit.edu/ubuntu/bionic ./" 
+
+RUN apt-get update && apt-get install -y \
+    software-properties-common \
+    help2man \
+    check \
+    devscripts \
+    make \
+    sudo \
+    ca-certificates \
+    libcurl4-openssl-dev \
+    libsodium-dev \
+    libseccomp-dev \
+    libmicrohttpd-dev \
+    libsecret-1-dev \
+    python3 \
+    python3-pip \ 
+    wget \
+    fuse \
+    git \
+    build-essential \
+    debhelper \
+    pkg-config \
+    perl \
+    sed \
+    libqrencode-dev \
+    fakeroot
+
+ 
+RUN cd /opt/ && git clone https://github.com/indigo-dc/oidc-agent \
+    && cd oidc-agent \
+    && make \
+    && make install_lib \
+    && make install
+
+#RUN apt-get install -y oidc-agent
 
 COPY ./ca.crt /ca.crt
 

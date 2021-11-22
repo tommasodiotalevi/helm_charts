@@ -3,6 +3,44 @@ hostname: jhub.<PUT PUBLIC IP>.myip.cloud.infn.it
 ingress: true
 # Show options for htcondor integration
 htcondor: false
+
+sshForwarder:
+  enabled: false
+  redis:
+    image: 
+      pullPolicy: IfNotPresent
+      name: redis
+      tag: 6.2.5
+    requests: 
+      cpu: 900m
+      memory: 900M
+    limits:
+      cpu: 1
+      memory: 1G
+  sshListener:
+    image:
+      pullPolicy: Always 
+      name: dodasts/dask-ssh-listener 
+      tag: v0.1.1
+    requests: 
+      cpu: 900m
+      memory: 900M
+    limits:
+      cpu: 1
+      memory: 1G
+  sshFWD:
+    image:
+      pullPolicy: Always
+      name: dodasts/dask-ssh-forwarder
+      tag: v0.1.1
+    nodePort: 31022
+    requests: 
+      cpu: 900m
+      memory: 900M
+    limits:
+      cpu: 1
+      memory: 1G
+
 # ====
 jupyterhub:
   ingress:
@@ -48,10 +86,19 @@ jupyterhub:
       dynamic:
         storageClass: longhorn
 
+      # extraVolumeMounts: [ { mountPath: /etc/certs, name: hostcerts } ],
+      # extraVolumes:
+      #     [
+      #       {
+      #           name: hostcerts,
+      #           secret: { defaultMode: 420, secretName: dask-tls }
+      #         }
+      #     ],
+
   hub:
     image:
       name: ghcr.io/dodas-ts/jhub
-      tag: 'v4.0.1'
+      tag: 'v5.0.1-pre15'
     cookieSecret: 72077073d819ce7a118a7dd7e2ce3eb74328cd306faa0540b1045d56113fdd0e
     #<PUT HERE A RANDOM TOKEN openssl rand -hex 32>
     networkPolicy:
@@ -76,7 +123,9 @@ jupyterhub:
       ADMIN_OAUTH_GROUPS: /admins
       WITH_GPU: "false"
       HTCONDOR_COLLECTOR_URL: <master public IP>.myip.cloud.infn.it:30618
-      HTCONDOR_SCHEDD_NAME: <master public IP>.myip.cloud.infn.it:31618
+      HTCONDOR_SCHEDD_NAME: <master public IP>.myip.cloud.infn.it
+      ACCESS_TOKEN: ""
+      SSH_NAMESPACE: default
     extraConfig:
       myConfig.py: |
         #!/usr/bin/env python
@@ -116,14 +165,14 @@ jupyterhub:
             with open(cache_file) as f:
                 cache_results = json.load(f)
         else:
-            response = subprocess.check_output(['/srv/.init/dodas-IAMClientRec', server_host], env=myenv)
+            response = subprocess.check_output(['/srv/.init/dodas-IAMClientRec', server_host+"-jhub"], env=myenv)
             response_list = response.decode('utf-8').split("\n")
             client_id = response_list[len(response_list)-3]
             client_secret = response_list[len(response_list)-2]
 
             cache_results = {
-                "client_id": client_id,
-                "client_secret": client_secret
+                "client_id": server_host+"-jhub",
+                "client_secret": "testmepls"
             }
             with open(cache_file, "w") as w:
                 json.dump(cache_results, w)
@@ -150,6 +199,7 @@ jupyterhub:
                 spawner.environment['REFRESH_TOKEN'] = auth_state['refresh_token']
                 spawner.environment['USERNAME'] = auth_state['oauth_user']['preferred_username']
                 spawner.environment['JUPYTERHUB_ACTIVITY_INTERVAL'] = "15"
+                spawner.environment['SSH_NAMESPACE'] = os.environ.get("SSH_NAMESPACE") 
 
                 amIAllowed = False
                 
@@ -253,9 +303,9 @@ jupyterhub:
                 <label for="stack">Select your desired image:</label>
           <input list="images" name="img">
           <datalist id="images">
-            <option value="ghcr.io/dodas-ts/notebook:v4.0.4-base">Notebook base</option>
-            <option value="ghcr.io/dodas-ts/notebook:v4.0.4-htc">Notebook with HTCondor</option>
-            <option value="ghcr.io/dodas-ts/notebook:v4.0.4-htc-root">Notebook with HTCondor and ROOT</option>
+            <option value="ghcr.io/dodas-ts/notebook:v5.0.1-pre15-base">Notebook base</option>
+            <option value="ghcr.io/dodas-ts/notebook:v5.0.1-pre15-htc">Notebook with HTCondor</option>
+            <option value="ghcr.io/dodas-ts/notebook:v5.0.1-pre15-htc-root">Notebook with HTCondor and ROOT</option>
           </datalist>
         <br>
                 <label for="cpu">Select your desired number of cores:</label>
@@ -310,10 +360,11 @@ jupyterhub:
         c.KubeSpawner.environment = {
           "_condor_COLLECTOR_HOST": os.environ["HTCONDOR_COLLECTOR_URL"],
           "_condor_SCHEDD_HOST": os.environ["HTCONDOR_SCHEDD_NAME"],
+          "_condor_SCHEDD_NAME": os.environ["HTCONDOR_SCHEDD_NAME"],
           "_condor_AUTH_SSL_CLIENT_CAFILE": "/ca.crt",
           "_condor_SEC_DEFAULT_AUTHENTICATION_METHODS": "SCITOKENS",
           "_condor_SCITOKENS_FILE": "/tmp/token",
-          "_condot_TOOL_DEBUG": "D_FULLDEBUG,D_SECURITY"
+          "_condor_TOOL_DEBUG": "D_FULLDEBUG,D_SECURITY"
         }
 
         c.KubeSpawner.extra_container_config = {

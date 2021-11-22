@@ -70,8 +70,9 @@ spec:
         livenessProbe:
           exec:
             command:
-            - ls
-            - /cvmfs/*
+            - bash
+            - -c
+            - "ls /cvmfs/*"
           initialDelaySeconds: 30
           periodSeconds: 600
         image: "{{ .Values.cvmfs.image }}:{{ .Values.cvmfs.tag }}"

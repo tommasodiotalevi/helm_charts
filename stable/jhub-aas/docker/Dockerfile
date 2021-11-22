@@ -1,4 +1,4 @@
-FROM ghcr.io/dodas-ts/dodas-iam-client-rec:v0.0.5 as REGISTRATION
+FROM ghcr.io/dodas-ts/dodas-iam-client-rec:v0.0.6-pre3 as REGISTRATION
 
 FROM jupyterhub/k8s-hub:0.11.1
 
@@ -17,11 +17,8 @@ RUN echo "jovyan ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
        rm /bin/sh && \
        ln -s /bin/bash /bin/sh
 
-USER $NB_UID
-
 RUN mkdir -p .init
 
 COPY --from=REGISTRATION /usr/local/bin/dodas-IAMClientRec /srv/.init/dodas-IAMClientRec
-
 
 CMD ["/usr/bin/start.sh", "jupyterhub"]

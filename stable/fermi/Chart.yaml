@@ -1,5 +1,5 @@
 annotations:
-  category: stable
+  category: test
 apiVersion: v1
 name: Fermi-experiment
 version: 1.0.5

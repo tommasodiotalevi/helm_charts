@@ -5,7 +5,7 @@
 import re
 import sys
 import time
-from jupyterhub.singleuser import main
+from jupyterlab.labhubapp import main
 from subprocess import Popen, DEVNULL
 
 if __name__ == '__main__':

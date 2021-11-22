@@ -1,0 +1,56 @@
+{{- if .Values.sshForwarder.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ssh-fwd
+  labels:
+    app.kubernetes.io/name: ssh-fwd
+spec:
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: ssh-fwd 
+    spec:
+      priorityClassName: system-node-critical
+      containers:
+      - name: redis 
+        resources:
+          requests:
+            memory: {{ .Values.sshForwarder.redis.requests.memory }}
+            cpu: {{ .Values.sshForwarder.redis.requests.cpu }}
+          limits:
+            memory: {{ .Values.sshForwarder.redis.limits.memory }}
+            cpu: {{ .Values.sshForwarder.redis.limits.cpu }}
+        imagePullPolicy: {{ .Values.sshForwarder.redis.image.pullPolicy }}
+        image: "{{ .Values.sshForwarder.redis.image.name }}:{{ .Values.sshForwarder.redis.image.tag }}"
+        volumeMounts: []
+      - name: ssh-fwd
+        resources:
+          requests:
+            memory: {{ .Values.sshForwarder.sshFWD.requests.memory }}
+            cpu: {{ .Values.sshForwarder.sshFWD.requests.cpu }}
+          limits:
+            memory: {{ .Values.sshForwarder.sshFWD.limits.memory }}
+            cpu: {{ .Values.sshForwarder.sshFWD.limits.cpu }}
+        imagePullPolicy: {{ .Values.sshForwarder.sshFWD.image.pullPolicy }}
+        image: "{{ .Values.sshForwarder.sshFWD.image.name }}:{{ .Values.sshForwarder.sshFWD.image.tag | default .Chart.AppVersion }}"
+      - name: listener 
+        resources:
+          requests:
+            memory: {{ .Values.sshForwarder.sshListener.requests.memory }}
+            cpu: {{ .Values.sshForwarder.sshListener.requests.cpu }}
+          limits:
+            memory: {{ .Values.sshForwarder.sshListener.limits.memory }}
+            cpu: {{ .Values.sshForwarder.sshListener.limits.cpu }}
+        imagePullPolicy: {{ .Values.sshForwarder.sshListener.image.pullPolicy }}
+        image: "{{ .Values.sshForwarder.sshListener.image.name }}:{{ .Values.sshForwarder.sshListener.image.tag | default .Chart.AppVersion }}"
+      volumes:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: ssh-fwd 
+  
+
+  replicas: 1
+  strategy:
+    type: Recreate
+{{- end }}

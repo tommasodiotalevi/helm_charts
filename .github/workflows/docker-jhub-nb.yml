@@ -46,6 +46,16 @@ jobs:
         file: ./stable/jhub-aas/docker/Dockerfile.base-htc
         platforms: linux/amd64
         build-args: "NOTEBOOK_VERSION=${{ env.RELEASE_VERSION }}"
+    - name: Build container base+HTC+DASK image
+      uses: docker/build-push-action@v2
+      with: 
+        context: ./stable/jhub-aas/docker/
+        outputs: "type=registry,push=true"
+        tags: |
+            ghcr.io/${{ steps.get_repo_owner.outputs.repo_owner }}/notebook:${{ env.RELEASE_VERSION }}-dask
+        file: ./stable/jhub-aas/docker/Dockerfile.dask
+        platforms: linux/amd64
+        build-args: "NOTEBOOK_VERSION=${{ env.RELEASE_VERSION }}"
     - name: Build container base+htc+ROOT image
       uses: docker/build-push-action@v2
       with: 
