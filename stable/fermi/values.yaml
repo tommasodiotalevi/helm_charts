@@ -49,8 +49,8 @@ htcondor:
   wn:
     replicas: 1
     image:
-      name:  dodasts/execute
-      tag:  "8.9.9-el7-fermi"
+      name:  dodasts/execute-fermi
+      tag:  "v1.0.2-fermi"
       pullPolicy: IfNotPresent
     # Condor slot type
     slotType: cpus=1, mem=2000
