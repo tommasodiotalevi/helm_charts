@@ -47,5 +47,7 @@ data:
     NUM_CPUS = {{ .Values.wn.requests.cpu }}
     SLOT_TYPE_1 = {{ .Values.wn.slotType }}
     SLOT_TYPE_1_PARTITIONABLE = TRUE
+    NUM_SLOTS = 1
+    NUM_SLOTS_TYPE_1 = 1
 {{- end }}
 {{ .Values.wn.config | indent 2 }}
