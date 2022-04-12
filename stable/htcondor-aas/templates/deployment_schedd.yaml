@@ -16,15 +16,9 @@ spec:
       priorityClassName: system-node-critical
       #hostNetwork: true
       affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app.kubernetes.io/name
-                operator: In
-                values:
-                - schedd
-            topologyKey: kubernetes.io/hostname
+{{- if .Values.schedd.affinity}}
+{{ .Values.schedd.affinity  | indent 8 }}
+{{- end }}
       hostAliases:                                                                                                           
       - hostnames:                                                                                                           
         - {{ .Values.schedd.hostname }}
@@ -45,6 +39,8 @@ spec:
         volumeMounts:
           - mountPath: "/etc/condor/config.d"
             name: configd
+          - name: spool
+            mountPath: /var/lib/condor/spool
           #- mountPath: "/etc/ca"
           #  name: cafile
           - name: clustersecret

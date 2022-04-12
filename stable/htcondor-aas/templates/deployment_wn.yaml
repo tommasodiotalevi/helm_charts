@@ -15,30 +15,9 @@ spec:
     spec:
       priorityClassName: system-node-critical
       affinity:
-        #podAntiAffinity:
-          # requiredDuringSchedulingIgnoredDuringExecution:
-          # - labelSelector:
-          #     matchExpressions:
-          #     - key: app.kubernetes.io/name
-          #       operator: NotIn
-          #       values:
-          #       - master
-          #       - schedd
-          #       - wn
-          #  topologyKey: kubernetes.io/hostname
-        {{- if .Values.cvmfs.enabled }}
-        podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app.kubernetes.io/name
-                operator: In
-                values:
-                {{- if .Values.cvmfs.enabled }}
-                - cvmfs
-                {{- end }}
-            topologyKey: kubernetes.io/hostname
-        {{- end }}
+{{- if .Values.wn.affinity}}
+{{ .Values.wn.affinity  | indent 8 }}
+{{- end }}
       #hostNetwork: true
       {{- if .Values.ttsCache.enabled }}
       serviceAccountName: tts-account-{{ .Release.Namespace}}

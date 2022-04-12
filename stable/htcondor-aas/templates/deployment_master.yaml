@@ -15,15 +15,9 @@ spec:
     spec:
       priorityClassName: system-node-critical
       affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app.kubernetes.io/name
-                operator: In
-                values:
-                - master
-            topologyKey: kubernetes.io/hostname
+{{- if .Values.master.affinity}}
+{{ .Values.master.affinity  | indent 8 }}
+{{- end }}
       #hostNetwork: true
       containers:
       - name: ccb

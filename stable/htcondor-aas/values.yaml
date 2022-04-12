@@ -7,6 +7,18 @@ cluster:
 
 schedd: 
   enabled: true
+  affinity: |
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app.kubernetes.io/name
+            operator: In
+            values:
+            - schedd
+            - master
+            - wn
+        topologyKey: kubernetes.io/hostname  
   mapfile: |
     SCITOKENS https:\/\/dodas-iam.cloud.cnaf.infn.it\/,(.*) \1@users.htcondor.org
     PASSWORD (*.) condor
@@ -32,6 +44,27 @@ schedd:
 
 master:
   enabled: true
+  affinity: |
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app.kubernetes.io/name
+            operator: In
+            values:
+            - schedd
+            - master
+            - wn
+        topologyKey: kubernetes.io/hostname
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app.kubernetes.io/name
+            operator: In
+            values:
+            - cvmfs
+        topologyKey: kubernetes.io/hostname
   publicIP: <master public IP>
   extraconfig: ""
   hostname: <master public IP>.myip.cloud.infn.it
@@ -49,6 +82,17 @@ master:
 
 wn:
   enabled: true
+  affinity: |
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app.kubernetes.io/name
+            operator: In
+            values:
+            - schedd
+            - master
+        topologyKey: kubernetes.io/hostname  
   replicas: 1
   image:
     name:  ttedesch/htcondor-execute
