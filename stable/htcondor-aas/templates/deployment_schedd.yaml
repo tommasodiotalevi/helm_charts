@@ -23,6 +23,13 @@ spec:
       - hostnames:                                                                                                           
         - {{ .Values.schedd.hostname }}
         ip: {{ .Values.master.publicIP }}
+      initContainers:
+      - name: changeowner
+        image: busybox
+        command: ["sh", "-c", "chown -R condor /var/lib/condor/spool"]   
+        volumeMounts:
+          - name: spool
+            mountPath: /var/lib/condor/spool
       containers:
       - name: schedd
         resources:
