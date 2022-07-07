@@ -4,6 +4,9 @@
 
 iam:
     endpoint: https://iam.cloud.infn.it
+    oauth_sub: DUMMY
+    oauth_groups: DUMMY
+    oauth_admin_groups: DUMMY
 
 hub:
     host: localhost
