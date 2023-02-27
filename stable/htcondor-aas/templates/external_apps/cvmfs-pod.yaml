@@ -16,6 +16,7 @@ data:
 
 {{- if .Values.cvmfs.privKey }}
 {{- range   .Values.cvmfs.privKey }}
+---
 apiVersion: v1
 kind: Secret
 metadata:
