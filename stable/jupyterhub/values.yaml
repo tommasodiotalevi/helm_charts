@@ -10,8 +10,11 @@ iam:
 
 hub:
     host: localhost
-    image: dodasts/jhub:v0.0.9-jhub
+    image: dodasts/jhub:v0.0.15-jhub
 
 s3:
     endpoint: https://minio.cloud.infn.it/minio
     bucket: mybucket
+    
+cert:   
+    letsencrypt: letsencrypt-prod
