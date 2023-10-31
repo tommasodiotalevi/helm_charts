@@ -10,7 +10,7 @@ iam:
 
 hub:
     host: localhost
-    image: dodasts/jhub:v0.0.15-jhub
+    image: dodasts/jhub:v0.0.16-jhub
 
 s3:
     endpoint: https://minio.cloud.infn.it/minio
