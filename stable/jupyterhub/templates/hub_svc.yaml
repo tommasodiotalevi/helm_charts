@@ -17,10 +17,9 @@ kind: Ingress
 metadata:
   name: hub-ingress
   annotations:
-    kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: {{ .Values.cert.letsencrypt }}
-
 spec:
+  ingressClassName: nginx
   tls:
   - hosts:
     - "jhub.{{ .Values.hub.host }}.myip.cloud.infn.it"
