@@ -29,7 +29,7 @@ schedd:
     spooldir:
       enabled: true
       storageClass: longhorn
-      size: 20Gi 
+      size: <storage_size> 
   requests:
     memory: "500M"
     cpu: "100m" 
