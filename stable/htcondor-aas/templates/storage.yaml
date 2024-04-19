@@ -1,4 +1,4 @@
-# longhorn spool
+{{- if .Values.schedd.enabled }}
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -33,3 +33,4 @@ spec:
   resources:
     requests:
       storage: {{ .Values.schedd.persistence.spooldir.size }}
+{{- end }}

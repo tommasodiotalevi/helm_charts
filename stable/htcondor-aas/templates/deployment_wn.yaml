@@ -13,14 +13,14 @@ spec:
       labels:
         app.kubernetes.io/name: wn
     spec:
-      priorityClassName: system-node-critical
+      priorityClassName: nopre
       affinity:
 {{- if .Values.wn.affinity}}
 {{ .Values.wn.affinity  | indent 8 }}
 {{- end }}
       #hostNetwork: true
       {{- if .Values.ttsCache.enabled }}
-      serviceAccountName: tts-account-{{ .Release.Namespace}}
+      serviceAccountName: tts-account-{{ .Release.Namespace }}
       {{- end }}
       containers:
       {{- if .Values.squid.enabled }}

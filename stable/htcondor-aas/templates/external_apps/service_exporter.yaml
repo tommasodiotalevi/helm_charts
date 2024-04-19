@@ -13,4 +13,4 @@ spec:
     targetPort: 9118
   selector:
     app: htcondor-exporter
-{{- end}}
+{{- end }}

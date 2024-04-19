@@ -13,8 +13,7 @@ spec:
       labels:
         app.kubernetes.io/name: schedd
     spec:
-      priorityClassName: system-node-critical
-      #hostNetwork: true
+      priorityClassName: highpriowithpre
       affinity:
 {{- if .Values.schedd.affinity}}
 {{ .Values.schedd.affinity  | indent 8 }}
