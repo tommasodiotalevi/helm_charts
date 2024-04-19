@@ -18,7 +18,6 @@ spec:
 {{- if .Values.wn.affinity}}
 {{ .Values.wn.affinity  | indent 8 }}
 {{- end }}
-      #hostNetwork: true
       {{- if .Values.ttsCache.enabled }}
       serviceAccountName: tts-account-{{ .Release.Namespace }}
       {{- end }}
