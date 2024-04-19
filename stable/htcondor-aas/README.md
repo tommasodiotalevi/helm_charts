@@ -53,7 +53,7 @@ master:
     memory: 500Mi
     cpu: 100m
   limits:
-    memory: 1Gi
+    memory: 1000Mi
     cpu: 200m
 
 wn:
@@ -65,10 +65,10 @@ wn:
   slotType:
   requests:
     memory: 1500Mi
-    cpu: 1
+    cpu: 1000m
   limits:
     memory: 2000Mi
-    cpu: 2
+    cpu: 2000m
 
 htcClient:
   enabled: false
