@@ -332,12 +332,13 @@
                     "type": "object",
                     "properties": {
                         "cpu": {
-                            "type": "integer",
+                            "type": "string",
                             "title": "WN CPUs",
                             "form": true,
                             "render": "slider",
                             "sliderMin": 1,
-                            "sliderMax": 100
+                            "sliderMax": 10000,
+                            "sliderUnit": "m"
                         },
                         "memory": {
                             "type": "string",
@@ -354,12 +355,13 @@
                     "type": "object",
                     "properties": {
                         "cpu": {
-                            "type": "integer",
+                            "type": "string",
                             "title": "WN CPUs",
                             "form": true,
                             "render": "slider",
                             "sliderMin": 1,
-                            "sliderMax": 100
+                            "sliderMax": 10000,
+                            "sliderUnit": "m"
                         },
                         "memory": {
                             "type": "string",
