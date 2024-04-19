@@ -70,6 +70,9 @@ spec:
           requests:
             memory: {{ .Values.wn.requests.memory }}
             cpu: {{ .Values.wn.requests.cpu }}
+          limits:
+            memory: {{ .Values.master.limits.memory }}
+            cpu: {{ .Values.master.limits.cpu }}
         imagePullPolicy: {{ .Values.wn.image.pullPolicy }}
         image: "{{ .Values.wn.image.name }}:{{ .Values.wn.image.tag | default .Chart.AppVersion }}"
         env:

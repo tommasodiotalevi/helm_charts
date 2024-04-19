@@ -1,6 +1,6 @@
-## HTCONDOR Helm Chart
+# HTCONDOR Helm Chart
 
-### Values
+## Values
 
 ```yaml
 # Default values for htcondor.
@@ -31,8 +31,11 @@ schedd:
       storageClass: longhorn
       size: <storage_size> 
   requests:
-    memory: "500M"
-    cpu: "100m" 
+    memory: 500Mi
+    cpu: 100m
+  limits:
+    memory: 1000Mi
+    cpu: 200m
 
 master:
   publicIP: <master public IP>
@@ -47,8 +50,11 @@ master:
     tag:  "8.9.9-el7"
     pullPolicy: InNotPresent
   requests:
-    memory: "500M"
-    cpu: "100m" 
+    memory: 500Mi
+    cpu: 100m
+  limits:
+    memory: 1Gi
+    cpu: 200m
 
 wn:
   replicas: 1
@@ -58,8 +64,11 @@ wn:
     pullPolicy: InNotPresent
   slotType:
   requests:
-    memory: "500M"
-    cpu: "100m" 
+    memory: 1500Mi
+    cpu: 1
+  limits:
+    memory: 2000Mi
+    cpu: 2
 
 htcClient:
   enabled: false

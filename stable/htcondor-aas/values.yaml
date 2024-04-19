@@ -39,8 +39,11 @@ schedd:
       storageClass: longhorn
       size: 20Gi 
   requests:
-    memory: "500M"
-    cpu: "100m" 
+    memory: 500Mi
+    cpu: 100m
+  limits:
+    memory: 1000Mi
+    cpu: 200m
 
 master:
   enabled: true
@@ -68,8 +71,11 @@ master:
     tag:  "8.9.9-el7"
     pullPolicy: IfNotPresent
   requests:
-    memory: "500M"
-    cpu: "100m" 
+    memory: 500Mi
+    cpu: 100m
+  limits:
+    memory: 1Gi
+    cpu: 200m
 
 wn:
   enabled: true
@@ -101,8 +107,11 @@ wn:
   # Condor slot type
   slotType: cpus=1, mem=2000
   requests:
-    memory: "1500M"
-    cpu: 1 
+    memory: 1500Mi
+    cpu: 1
+  limits:
+    memory: 2000Mi
+    cpu: 2
   # Define you own persistent volume to mount
   persistentVolume:
     pv: 
