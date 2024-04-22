@@ -31,11 +31,11 @@ schedd:
       storageClass: longhorn
       size: <storage_size> 
   requests:
-    memory: 500Mi
-    cpu: 100m
+    memory: "500Mi"
+    cpu: "120m"
   limits:
-    memory: 1000Mi
-    cpu: 200m
+    memory: "1200Mi"
+    cpu: "250m"
 
 master:
   publicIP: <master public IP>
@@ -50,11 +50,11 @@ master:
     tag:  "8.9.9-el7"
     pullPolicy: InNotPresent
   requests:
-    memory: 500Mi
-    cpu: 100m
+    memory: "500Mi"
+    cpu: "120m"
   limits:
-    memory: 1000Mi
-    cpu: 200m
+    memory: "1200Mi"
+    cpu: "250m"
 
 wn:
   replicas: 1
@@ -64,11 +64,11 @@ wn:
     pullPolicy: InNotPresent
   slotType:
   requests:
-    memory: 1500Mi
-    cpu: 1000m
+    memory: "1200Mi"
+    cpu: 1
   limits:
-    memory: 2000Mi
-    cpu: 2000m
+    memory: "2400Mi"
+    cpu: 2
 
 htcClient:
   enabled: false

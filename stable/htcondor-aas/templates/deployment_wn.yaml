@@ -7,7 +7,6 @@ metadata:
   annotations:
     configmap.reloader.stakater.com/reload: "wnconfigd,mapfile"
 spec:
-
   template:
     metadata:
       labels:
@@ -41,7 +40,7 @@ spec:
           - "/app/.config.yaml"
         resources:
           limits:
-            memory: "500M"
+            memory: "500Mi"
             cpu: "100m"
         volumeMounts:
           - name: proxydir
@@ -70,8 +69,8 @@ spec:
             memory: {{ .Values.wn.requests.memory }}
             cpu: {{ .Values.wn.requests.cpu }}
           limits:
-            memory: {{ .Values.master.limits.memory }}
-            cpu: {{ .Values.master.limits.cpu }}
+            memory: {{ .Values.wn.limits.memory }}
+            cpu: {{ .Values.wn.limits.cpu }}
         imagePullPolicy: {{ .Values.wn.image.pullPolicy }}
         image: "{{ .Values.wn.image.name }}:{{ .Values.wn.image.tag | default .Chart.AppVersion }}"
         env:
@@ -159,7 +158,6 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: wn
-
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.wn.replicas}}
   {{- end }}

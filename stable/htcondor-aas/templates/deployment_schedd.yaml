@@ -36,8 +36,8 @@ spec:
             memory: {{ .Values.schedd.requests.memory }}
             cpu: {{ .Values.schedd.requests.cpu }}
           limits:
-            memory: {{ .Values.master.limits.memory }}
-            cpu: {{ .Values.master.limits.cpu }}
+            memory: {{ .Values.schedd.limits.memory }}
+            cpu: {{ .Values.schedd.limits.cpu }}
         imagePullPolicy: {{ .Values.schedd.image.pullPolicy }}
         securityContext:
           capabilities:
