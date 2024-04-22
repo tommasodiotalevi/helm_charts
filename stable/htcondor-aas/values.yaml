@@ -31,7 +31,7 @@ schedd:
     targetPort: 31618
   image:
     name: dodasts/submit
-    tag:  "8.9.9-el7"
+    tag:  "9.0-el7"
     pullPolicy: IfNotPresent
   persistence:
     spooldir:
@@ -39,8 +39,11 @@ schedd:
       storageClass: longhorn
       size: 20Gi 
   requests:
-    memory: "500M"
-    cpu: "100m" 
+    memory: "500Mi"
+    cpu: "120m"
+  limits:
+    memory: "1200Mi"
+    cpu: "250m"
 
 master:
   enabled: true
@@ -65,11 +68,14 @@ master:
     targetPort: 30618
   image:
     name: dodasts/cm
-    tag:  "8.9.9-el7"
+    tag:  "9.0-el7"
     pullPolicy: IfNotPresent
   requests:
-    memory: "500M"
-    cpu: "100m" 
+    memory: "500Mi"
+    cpu: "120m"
+  limits:
+    memory: "1200Mi"
+    cpu: "250m"
 
 wn:
   enabled: true
@@ -101,8 +107,11 @@ wn:
   # Condor slot type
   slotType: cpus=1, mem=2000
   requests:
-    memory: "1500M"
-    cpu: 1 
+    memory: "1200Mi"
+    cpu: 1
+  limits:
+    memory: "2400Mi"
+    cpu: 2
   # Define you own persistent volume to mount
   persistentVolume:
     pv: 
@@ -133,7 +142,7 @@ htcClient:
   image:
     name: htcondor/execute
     pullPolicy: IfNotPresent
-    tag: "8.9.9-el7"
+    tag: "9.0-el7"
 
 prometheusExporter:
   enabled: false

@@ -13,18 +13,20 @@ spec:
       labels:
         app.kubernetes.io/name: master
     spec:
-      priorityClassName: system-node-critical
+      priorityClassName: highpriowithpre
       affinity:
 {{- if .Values.master.affinity}}
 {{ .Values.master.affinity  | indent 8 }}
 {{- end }}
-      #hostNetwork: true
       containers:
       - name: ccb
         resources:
           requests:
             memory: {{ .Values.master.requests.memory }}
             cpu: {{ .Values.master.requests.cpu }}
+          limits:
+            memory: {{ .Values.master.limits.memory }}
+            cpu: {{ .Values.master.limits.cpu }}
         imagePullPolicy: {{ .Values.master.image.pullPolicy }}
         image: "{{ .Values.master.image.name }}:{{ .Values.master.image.tag | default .Chart.AppVersion }}"
         volumeMounts:

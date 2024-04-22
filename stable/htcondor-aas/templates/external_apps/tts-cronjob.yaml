@@ -33,7 +33,7 @@ spec:
           configMap:
             name: ttsconfig
       restartPolicy: Never
-      serviceAccountName: tts-account-{{ .Release.Namespace}}
+      serviceAccountName: tts-account-{{ .Release.Namespace }}
 ---
 apiVersion: batch/v1beta1
 kind: CronJob
@@ -71,5 +71,5 @@ spec:
               configMap:
                 name: ttsconfig
           restartPolicy: OnFailure
-          serviceAccountName: tts-account-{{ .Release.Namespace}}
+          serviceAccountName: tts-account-{{ .Release.Namespace }}
 {{- end }}

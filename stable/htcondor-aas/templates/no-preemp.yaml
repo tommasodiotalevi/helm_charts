@@ -1,0 +1,8 @@
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: nopre 
+value: 10000000
+preemptionPolicy: Never
+globalDefault: True 
+description: "This priority class should be used for wn service pods only."

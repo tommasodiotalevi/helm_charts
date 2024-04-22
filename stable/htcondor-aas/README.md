@@ -1,6 +1,6 @@
-## HTCONDOR Helm Chart
+# HTCONDOR Helm Chart
 
-### Values
+## Values
 
 ```yaml
 # Default values for htcondor.
@@ -23,16 +23,19 @@ schedd:
     targetPort: 31618
   image:
     name: htcondor/submit
-    tag:  "8.9.9-el7"
+    tag:  "9.0-el7"
     pullPolicy: InNotPresent
   persistence:
     spooldir:
       enabled: true
       storageClass: longhorn
-      size: 20Gi 
+      size: <storage_size> 
   requests:
-    memory: "500M"
-    cpu: "100m" 
+    memory: "500Mi"
+    cpu: "120m"
+  limits:
+    memory: "1200Mi"
+    cpu: "250m"
 
 master:
   publicIP: <master public IP>
@@ -44,11 +47,14 @@ master:
     targetPort: 30618
   image:
     name: htcondor/cm
-    tag:  "8.9.9-el7"
+    tag:  "9.0-el7"
     pullPolicy: InNotPresent
   requests:
-    memory: "500M"
-    cpu: "100m" 
+    memory: "500Mi"
+    cpu: "120m"
+  limits:
+    memory: "1200Mi"
+    cpu: "250m"
 
 wn:
   replicas: 1
@@ -58,15 +64,18 @@ wn:
     pullPolicy: InNotPresent
   slotType:
   requests:
-    memory: "500M"
-    cpu: "100m" 
+    memory: "1200Mi"
+    cpu: 1
+  limits:
+    memory: "2400Mi"
+    cpu: 2
 
 htcClient:
   enabled: false
   image:
     name: htcondor/execute
     pullPolicy: InNotPresent
-    tag: "8.9.9-el7"
+    tag: "9.0-el7"
 
 prometheusExporter:
   image:  

@@ -13,8 +13,7 @@ spec:
       labels:
         app.kubernetes.io/name: schedd
     spec:
-      priorityClassName: system-node-critical
-      #hostNetwork: true
+      priorityClassName: highpriowithpre
       affinity:
 {{- if .Values.schedd.affinity}}
 {{ .Values.schedd.affinity  | indent 8 }}
@@ -36,6 +35,9 @@ spec:
           requests:
             memory: {{ .Values.schedd.requests.memory }}
             cpu: {{ .Values.schedd.requests.cpu }}
+          limits:
+            memory: {{ .Values.schedd.limits.memory }}
+            cpu: {{ .Values.schedd.limits.cpu }}
         imagePullPolicy: {{ .Values.schedd.image.pullPolicy }}
         securityContext:
           capabilities:
@@ -56,6 +58,10 @@ spec:
             mountPath: /home/uwdir/
           - name: hostcerts
             mountPath: /etc/certs
+      tolerations:
+      - effect: "NoSchedule"
+        key: "node-role.kubernetes.io/control-plane"
+        operator: "Exists"
       volumes:
       - name: configd
         configMap:

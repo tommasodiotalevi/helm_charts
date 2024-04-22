@@ -1,4 +1,27 @@
-# longhorn spool
+{{- if .Values.schedd.enabled }}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: spool-pv
+  labels:
+    type: local
+spec:
+  storageClassName: {{ .Values.schedd.persistence.spooldir.storageClass }}
+  capacity:
+    storage: {{ .Values.schedd.persistence.spooldir.size }}
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/data"
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - vnode-0.localdomain
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -6,7 +29,8 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: {{ .Values.schedd.persistence.spooldir.storageClass }} 
+  storageClassName: {{ .Values.schedd.persistence.spooldir.storageClass }}
   resources:
     requests:
-      storage: {{ .Values.schedd.persistence.spooldir.size }} 
+      storage: {{ .Values.schedd.persistence.spooldir.size }}
+{{- end }}

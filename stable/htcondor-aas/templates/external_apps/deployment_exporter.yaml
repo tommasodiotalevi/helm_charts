@@ -17,10 +17,8 @@ spec:
     spec:
       containers:
       - name: htcondor-exporter
-        #image: ttedesch/htcondor-exporter:v3
         image: "{{ .Values.prometheusExporter.image.name }}:{{ .Values.prometheusExporter.image.tag | default .Chart.AppVersion }}"
-        imagePullPolicy: {{  .Values.prometheusExporter.image.pullPolicy }}
-        #image: ttedesch/htcondor-exporter:updatedproxy-ok
+        imagePullPolicy: {{ .Values.prometheusExporter.image.pullPolicy }}
         env:
         - name: _condor_SEC_CLIENT_AUTHENTICATION_METHODS
           value: PASSWORD
@@ -43,4 +41,4 @@ spec:
           secret:
             secretName: clustersecret
             defaultMode: 256
-{{- end}}
+{{- end }}

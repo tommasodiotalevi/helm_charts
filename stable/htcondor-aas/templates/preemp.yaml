@@ -1,0 +1,7 @@
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: highpriowithpre
+value: 1000000000
+globalDefault: false
+description: "pre-empt allowed, for critical services mainly"
