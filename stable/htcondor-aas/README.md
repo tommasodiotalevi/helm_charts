@@ -23,7 +23,7 @@ schedd:
     targetPort: 31618
   image:
     name: htcondor/submit
-    tag:  "8.9.9-el7"
+    tag:  "9.0-el7"
     pullPolicy: InNotPresent
   persistence:
     spooldir:
@@ -47,7 +47,7 @@ master:
     targetPort: 30618
   image:
     name: htcondor/cm
-    tag:  "8.9.9-el7"
+    tag:  "9.0-el7"
     pullPolicy: InNotPresent
   requests:
     memory: "500Mi"
@@ -75,7 +75,7 @@ htcClient:
   image:
     name: htcondor/execute
     pullPolicy: InNotPresent
-    tag: "8.9.9-el7"
+    tag: "9.0-el7"
 
 prometheusExporter:
   image:  

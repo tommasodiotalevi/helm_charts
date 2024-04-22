@@ -31,7 +31,7 @@ schedd:
     targetPort: 31618
   image:
     name: dodasts/submit
-    tag:  "8.9.9-el7"
+    tag:  "9.0-el7"
     pullPolicy: IfNotPresent
   persistence:
     spooldir:
@@ -68,7 +68,7 @@ master:
     targetPort: 30618
   image:
     name: dodasts/cm
-    tag:  "8.9.9-el7"
+    tag:  "9.0-el7"
     pullPolicy: IfNotPresent
   requests:
     memory: "500Mi"
@@ -142,7 +142,7 @@ htcClient:
   image:
     name: htcondor/execute
     pullPolicy: IfNotPresent
-    tag: "8.9.9-el7"
+    tag: "9.0-el7"
 
 prometheusExporter:
   enabled: false

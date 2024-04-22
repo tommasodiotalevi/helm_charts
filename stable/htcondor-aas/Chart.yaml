@@ -1,10 +1,10 @@
 annotations:
   category: stable
 apiVersion: v1
-appVersion: 8.9.9
+appVersion: 9.0.0
 description: A Helm chart for the deployment of HTCondor cluster
 name: htcondor
-version: 2.1.26
+version: 2.2.0
 icon: https://research.cs.wisc.edu/htcondor/images/HTCondor_wiki_logo_small.png
 maintainers:
   - name: ttedesch
