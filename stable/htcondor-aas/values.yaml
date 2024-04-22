@@ -108,10 +108,10 @@ wn:
   slotType: cpus=1, mem=2000
   requests:
     memory: 1500Mi
-    cpu: 1000m
+    cpu: 1
   limits:
     memory: 2000Mi
-    cpu: 2000m
+    cpu: 2
   # Define you own persistent volume to mount
   persistentVolume:
     pv: 
