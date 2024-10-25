@@ -11,6 +11,8 @@ iam:
 hub:
     host: localhost
     image: harbor.cloud.infn.it/datacloud-templates/jhub-spark:1.2.0
+    spawned_image: harbor.cloud.infn.it/datacloud-templates/spark:1.2.0
+    cvmfs_snapshotter: false
 
 s3:
     endpoint: https://rgw.cloud.infn.it/
