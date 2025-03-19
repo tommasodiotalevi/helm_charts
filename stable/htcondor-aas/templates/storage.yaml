@@ -17,10 +17,10 @@ spec:
     required:
       nodeSelectorTerms:
       - matchExpressions:
-        - key: kubernetes.io/hostname
+        - key: node-role.kubernetes.io/master
           operator: In
           values:
-          - vnode-0.localdomain
+          - true
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
