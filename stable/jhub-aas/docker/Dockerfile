@@ -1,6 +1,6 @@
 FROM ghcr.io/tommasodiotalevi/dodas-iam-client-rec:test as REGISTRATION
 
-FROM jupyterhub/k8s-hub:0.11.1
+FROM jupyterhub/k8s-hub:1.0.0
 
 USER root
 
