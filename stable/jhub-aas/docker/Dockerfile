@@ -6,7 +6,7 @@ USER root
 
 RUN pip3 install pyjwt
 
-RUN pip3 install kubernetes
+RUN pip3 install kubernetes kubernetes_asyncio
 
 RUN curl -k  https://raw.githubusercontent.com/DODAS-TS/dodas-apps/master/logo.png -o /etc/logo.png
 
